@@ -1,7 +1,10 @@
-var server = require('../server.js');
+// require Users controller and Spots controller
 
-module.exports = function (server) {
-	server.get('/', function(req, res) {
-		res.send('ok');
-	});
+module.exports = function (app, express) {
+  var router = express.Router();
+
+  // set up paths for router
+  // router.get('/user', UserController.getUsers);
+
+  return router;
 };

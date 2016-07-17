@@ -1,16 +1,10 @@
 var express = require('express');
-var morgan = require('morgan');
-var parser = require('body-parser');
-var routes = require('./config/routes.js');
-var middleware = require('./config/middleware.js');
-
 var app = express();
-app.use(morgan('dev'));
-app.use(parser.json());
-app.use(express.static(__dirname + '/../client'));
-// app.use(express.static(__dirname + '../compiled'));
-routes(app);
-
+var apiRoutes = require('./config/routes.js')(app, express);
 var port = 3000;
-app.listen(port, console.log('listening'));
+
+require('./config/middleware.js')(app, express);
+app.use('/api', apiRoutes);
+
+app.listen(port, console.log('listening to localhost:3000'));
 module.exports = app;
