@@ -1,0 +1,23 @@
+{
+  "name": "spotfinder2",
+  "version": "1.0.0",
+  "description": "App for finding and posting Bay Area skate spots with Google maps interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamChill/SpotFinder2.git"
+  },
+  "keywords": [
+    "Skateboard",
+    "BayArea"
+  ],
+  "author": "AJ Nat Conrad Emily",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamChill/SpotFinder2/issues"
+  },
+  "homepage": "https://github.com/TeamChill/SpotFinder2#readme"
+}
