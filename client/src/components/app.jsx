@@ -47,9 +47,12 @@ export default class App extends React.Component {
   render() {
     // our map and sideBar component goes into the div below adjacent to the h1
     return (
-      <div>
-        <div className='map-container'>
-          <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
+      <div className='row'>
+        <div className='map col-md-8'>
+          <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={dummyData} changeCurrentSpot={this.changeCurrentSpot.bind(this)}/>
+        </div>
+        <div className='col-md-4'>
+        Wjffjjfjsdfklasd;fjlkanmsdlknlkcasdjlkcjlkasdjcl;ksadj
         </div>
       </div>
     );
