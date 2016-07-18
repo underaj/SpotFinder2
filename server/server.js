@@ -3,6 +3,8 @@ var app = express();
 var apiRoutes = require('./config/routes.js')(app, express);
 var port = 3000;
 
+// Initiate connection to mongo database
+require('./config/mongoose.js');
 require('./config/middleware.js')(app, express);
 app.use('/api', apiRoutes);
 
