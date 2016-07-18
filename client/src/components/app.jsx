@@ -1,4 +1,5 @@
 import React from 'react';
+import OurMap from './map.jsx';    
 
 const dummyLocation = [];
 
@@ -6,7 +7,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: dummyLocation
+      location: dummyLocation,
+      center: {lat: 39.74632, lng: -122.85734},
+      zoom: 9
     }
   }
 
@@ -14,8 +17,10 @@ export default class App extends React.Component {
     // our map and sideBar component goes into the div below adjacent to the h1
     return (
       <div>
-        <h1>Spot Finder</h1>
+        <div className='map-container'>
+          <OurMap center={this.state.center} zoom={this.state.zoom}/>
+        </div>
       </div>
-    )
+    );
   }
 }
