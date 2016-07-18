@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleMap from 'google-map-react';
-import {SkateSpot} from './skateSpot.jsx';
+import { SkateSpot } from './skateSpot.jsx';
 
 export default class OurMap extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class OurMap extends React.Component {
   render() {
     return (
       <GoogleMap defaultCenter={this.props.center} defaultZoom={this.props.zoom} > 
-        {this.props.skateSpotsData.map( (skateSpotData) => <SkateSpot lat={skateSpotData.location.lat} lng={skateSpotData.location.lng} skateSpotData={skateSpotData} changeCurrentSpot={this.props.changeCurrentSpot}/> ) }
+        {this.props.skateSpotsData.map( (skateSpotData) => <SkateSpot lat={skateSpotData.lat} lng={skateSpotData.lng} skateSpotData={skateSpotData} changeCurrentSpot={this.props.changeCurrentSpot}/> ) }
       </GoogleMap>
     );
   }
