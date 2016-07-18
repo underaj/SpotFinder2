@@ -6,10 +6,9 @@ module.exports = function (app, express) {
 
   // set up paths for router
   // router.get('/user', UserController.getUsers);
-
   // set up paths for skatespot api
   router.get('/skatespots', SpotController.getSkateSpots);
-  router.post('/skatespots', SpotController.saveSkateSpot);
+  router.post('/skatespot', SpotController.saveSkateSpot);
 
   return router;
 };
