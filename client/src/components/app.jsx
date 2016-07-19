@@ -65,9 +65,8 @@ export default class App extends React.Component {
     var mapStyle = {height: screen.height - 100};
 
     if (this.state.currentSpot && this.state.sidebarDisplayed) {
-      console.log('render details', this.state.currentSpot);
       ourMap = <div className='col-xs-8'>
-                <div className='map' style={mapStyle}>
+                <div className='map-wrapper' style={mapStyle}>
                   <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                   currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
                 </div>
@@ -77,7 +76,7 @@ export default class App extends React.Component {
                   </div>;
     } else {
         ourMap = <div className='col-xs-12'>
-                  <div className='map' style={mapStyle}>
+                  <div className='map-wrapper' style={mapStyle}>
                     <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                     currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
                   </div>
