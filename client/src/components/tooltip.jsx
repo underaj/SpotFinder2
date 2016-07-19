@@ -24,6 +24,8 @@ export default class Tooltip extends React.Component {
 	render () {
 		var style = {
 			zIndex: 1000,
+			width: 100,
+			height: 40
       // opacity: +this.state.opacity,
 			// top: (this.state.top || 0) + 20,
 			// left: (this.state.left || 0) - 30
