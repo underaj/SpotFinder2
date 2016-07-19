@@ -14,7 +14,7 @@ export default class OurMap extends React.Component {
 
   render() {
     return (
-      <GoogleMap defaultCenter={this.props.center} defaultZoom={this.props.zoom} onClick={ () => { this.spotOnBlur() } }> 
+      <GoogleMap center={this.props.center} zoom={this.props.zoom} onClick={ () => { this.spotOnBlur() } }> 
         {this.props.skateSpotsData.map( (skateSpotData) => <SkateSpot lat={skateSpotData.lat} lng={skateSpotData.lng} currentSpot={this.props.currentSpot} skateSpotData={skateSpotData} changeCurrentSpot={this.props.changeCurrentSpot}/> ) }
       </GoogleMap>
     );

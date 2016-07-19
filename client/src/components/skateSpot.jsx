@@ -13,7 +13,6 @@ export default class SkateSpot extends React.Component {
 
   spotOnClick() {
     this.props.changeCurrentSpot(this.props.skateSpotData);
-    this.props.bubbleShowOn();
     this.setState({
       toolTipVisible: !this.state.toolTipVisible
     });
