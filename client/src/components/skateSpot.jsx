@@ -22,7 +22,7 @@ export default class SkateSpot extends React.Component {
   render() {
     const style = this.props.$hover ? skateSpotHoverStyle : skateSpotStyle;
     var toolTip;
-    if (this.state.toolTipVisible && this.props.bubbleShow) {
+    if (this.props.currentSpot === this.props.skateSpotData) {
       toolTip = <Tooltip skateSpotData={this.props.skateSpotData.shortDescription}/>;
     } else {
       toolTip = '';
