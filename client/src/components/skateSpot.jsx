@@ -2,13 +2,37 @@ import React from 'react';
 import { skateSpotHoverStyle, skateSpotStyle } from './skateSpotStyle.js';
 import Tooltip from './tooltip.jsx';
 
-export const SkateSpot = (props) => {
+export default class SkateSpot extends React.Component {
 
-  const style = props.$hover ? skateSpotHoverStyle : skateSpotStyle;
-  return (
-    <div style={style} onClick={()=> props.changeCurrentSpot(props.skateSpotData)}>
-      {props.skateSpotData.icon}
-      <Tooltip skateSpotData={props.skateSpotData}/>
-    </div>
-  );
+  constructor(props) {
+    super(props);
+    this.state = {
+      toolTipVisible: false
+    }
+  }
+
+  spotOnClick() {
+    this.props.changeCurrentSpot(this.props.skateSpotData);
+    this.props.bubbleShowOn();
+    this.setState({
+      toolTipVisible: !this.state.toolTipVisible
+    });
+  }
+  
+  render() {
+    const style = this.props.$hover ? skateSpotHoverStyle : skateSpotStyle;
+    var toolTip;
+    if (this.state.toolTipVisible && this.props.bubbleShow) {
+      toolTip = <Tooltip skateSpotData={this.props.skateSpotData.shortDescription}/>;
+    } else {
+      toolTip = '';
+    }
+    
+    return (
+      <div style={style} onClick={ ()=> { this.spotOnClick() } }>
+        {this.props.skateSpotData.icon}
+        {toolTip}
+      </div>
+    );  
+  }
 }
