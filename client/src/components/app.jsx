@@ -49,7 +49,8 @@ export default class App extends React.Component {
       });
     } else {
       this.setState({
-        currentSpot: undefined
+        currentSpot: undefined,
+        center: {lat: 37.75, lng: -122.44}
       });
     }
 
