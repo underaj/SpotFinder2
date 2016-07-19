@@ -5,5 +5,6 @@ module.exports = function(app, express) {
   app.use(morgan('dev'));
   app.use(parser.json());
   app.use(express.static(__dirname + '/../../client'));
+  app.use(express.static(__dirname + '/../../node_modules'))
   app.use(express.static(__dirname + '/../../compiled'));
 };

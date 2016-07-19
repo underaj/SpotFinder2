@@ -1,5 +1,6 @@
 import React from 'react';
 import OurMap from './map.jsx';
+import {InfoPanel} from './infoPanel.jsx';
 
 const dummyData = [
   {
@@ -26,6 +27,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log('here');
     this.getSkateSpots();
   }
 
@@ -40,17 +42,34 @@ export default class App extends React.Component {
   changeCurrentSpot(spot) {
     console.log(spot);
     this.setState({
-      currentSpot: spot
+      currentSpot: spot,
+      center: {lat: spot.lat, lng: spot.lng},
+      zoom:12,
     });
+    console.log(this.state.center)
   }
 
   render() {
     // our map and sideBar component goes into the div below adjacent to the h1
+    var infoPanel;
+    var ourMap;
+    if (this.state.currentSpot === undefined) {
+      ourMap = <div className='full-map col-md-12'>
+                <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} changeCurrentSpot={this.changeCurrentSpot.bind(this)}/>
+               </div>;
+    } else {
+      ourMap = <div className='map col-md-8'>
+                <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} changeCurrentSpot={this.changeCurrentSpot.bind(this)}/>
+               </div>;
+      infoPanel = <div className='col-md-4'>
+                    <InfoPanel skateData={this.state.currentSpot}/>
+                  </div>;
+    }
+    console.log(infoPanel);
     return (
-      <div>
-        <div className='map-container'>
-          <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
-        </div>
+      <div className='row'>
+        {ourMap}
+        {infoPanel}
       </div>
     );
   }
