@@ -22,7 +22,7 @@ export default class SkateSpot extends React.Component {
     const style = this.props.$hover ? skateSpotHoverStyle : skateSpotStyle;
     var toolTip;
     if (this.props.currentSpot === this.props.skateSpotData) {
-      toolTip = <Tooltip skateSpotData={this.props.skateSpotData.shortDescription}/>;
+      toolTip = <Tooltip skateSpotData={this.props.skateSpotData.shortDescription} onClick={() => console.log('side bar in tooltip', this.props.showSidebar)}/>;
     } else {
       toolTip = '';
     }
