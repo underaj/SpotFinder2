@@ -41,11 +41,18 @@ export default class App extends React.Component {
 
   changeCurrentSpot(spot) {
     console.log(spot);
-    this.setState({
-      currentSpot: spot,
-      center: {lat: spot.lat, lng: spot.lng},
-      zoom:12,
-    });
+    if (spot !== undefined) {
+      this.setState({
+        currentSpot: spot,
+        center: {lat: spot.lat, lng: spot.lng},
+        zoom:12,
+      });
+    } else {
+      this.setState({
+        currentSpot: undefined
+      });
+    }
+
     console.log(this.state.center)
   }
 
@@ -55,11 +62,11 @@ export default class App extends React.Component {
     var ourMap;
     if (this.state.currentSpot === undefined) {
       ourMap = <div className='full-map col-md-12'>
-                <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} changeCurrentSpot={this.changeCurrentSpot.bind(this)}/>
+                <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)}/>
                </div>;
     } else {
       ourMap = <div className='map col-md-8'>
-                <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} changeCurrentSpot={this.changeCurrentSpot.bind(this)}/>
+                <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots} currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)}/>
                </div>;
       infoPanel = <div className='col-md-4'>
                     <InfoPanel skateData={this.state.currentSpot}/>
