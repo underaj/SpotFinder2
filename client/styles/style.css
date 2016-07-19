@@ -1,10 +1,8 @@
+.tooltip-wrapper {
+  background-color: black;
+  width: 100px;
 
-.full-map{
-  height: 1000px;
-  width: 100%; 
+.map-wrapper {
+  width: auto;
 }
 
-.map {
-  height:1000px;
-  width: 75%;
-}

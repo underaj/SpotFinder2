@@ -8,4 +8,4 @@ export const InfoPanel = (props) => (
     <p>The fat: {props.skateData.detailedDescription}</p>
     <p>Bust? : {props.skateData.bust}</p>
   </div>
-  );
+);

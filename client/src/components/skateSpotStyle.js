@@ -1,4 +1,4 @@
-export const e_size = 10;
+export const e_size = 20;
 
 export const skateSpotStyle = {
   position: 'absolute',
