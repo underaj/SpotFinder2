@@ -8,14 +8,16 @@ export default class OurMap extends React.Component {
   }
 
   spotOnBlur() {
-    this.props.changeCurrentSpot(undefined);
+    this.props.changeCurrentSpot(undefined, false);
   }
-
 
   render() {
     return (
       <GoogleMap center={this.props.center} zoom={this.props.zoom} onClick={ () => { this.spotOnBlur() } }> 
-        {this.props.skateSpotsData.map( (skateSpotData) => <SkateSpot lat={skateSpotData.lat} lng={skateSpotData.lng} currentSpot={this.props.currentSpot} skateSpotData={skateSpotData} changeCurrentSpot={this.props.changeCurrentSpot} showSidebar={this.props.showSidebar}/> ) }
+        {this.props.skateSpotsData.map( (skateSpotData) => {
+          return ( <SkateSpot lat={skateSpotData.lat} lng={skateSpotData.lng} 
+                   skateSpotData={skateSpotData} changeCurrentSpot={this.props.changeCurrentSpot} /> );
+        })}
       </GoogleMap>
     );
   }
