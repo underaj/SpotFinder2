@@ -13,3 +13,7 @@ export const apiPost = function apiPost(path, postObj) {
     contentType: 'application/json'
   });
 };
+
+export const getGeo = function(geoSuck, geoError, geoOptions) {
+
+}
