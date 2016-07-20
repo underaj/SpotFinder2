@@ -1,9 +1,10 @@
-// require Users controller and Spots controller
+// require Users controller and Spots controller 
 var SpotController = require('../spot/spotController.js');
 var UserController = require('../users/userController.js');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var User = require('../users/userModel.js');
+var bcrypt = require('bcrypt-nodejs');
 
 passport.use(new Strategy(function(username, password, cb) {
   User.findOne({username: username}, function(err, user) {
@@ -13,11 +14,16 @@ passport.use(new Strategy(function(username, password, cb) {
     if (!user) {
       return cb(null, false);
     }
-    //TODO: create helper hashing function
-    // if (user.password !== password) {
-    //   return cb(null, false);
-    // }
-    return cb(null, user);
+    bcrypt.compare(password, user.password, function(err, res) {
+      if (err) {
+        console.error('err in compare password', err);
+        return console.error('err in compare password', err);
+      }
+      if (res === true) {
+        return cb(null, user);
+      }
+        return cb(null, false);
+    });
   });
 }));
 
@@ -40,6 +46,7 @@ module.exports = function (app, express) {
   // set up paths for router
   router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), UserController.logIn);
   router.post('/user', UserController.signUp);
+  router.get('/logout', UserController.logOut);
   // set up paths for skatespot api
   router.get('/skatespots', SpotController.getSkateSpots);
   router.post('/skatespot', SpotController.saveSkateSpot);

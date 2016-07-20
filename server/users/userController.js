@@ -1,4 +1,5 @@
 var User = require('./userModel.js');
+var passport = require('passport');
 
 module.exports = {
   signUp: function(req, res) {
@@ -9,7 +10,7 @@ module.exports = {
       }
       if (result) {
         // console.log('username taken, choose another');
-        res.sendStatus(404);
+        res.redirect('/');
       }
       else {
         console.log('req body ', req.body);
@@ -25,7 +26,15 @@ module.exports = {
       }
     });
   },
+
   logIn: function(req, res) {
+      console.log(req);
       res.send('passport is working');
+  },
+
+  logOut: function(req, res) {
+    req.logout();
+    console.log('hey hey');
+    res.redirect('/');
   }
 };
