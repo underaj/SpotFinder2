@@ -30,13 +30,7 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
-<<<<<<< 8528b533d1d4071eda436e63d446bd7bcca0db19
   User.findOne({'_id': id}, function(err, user) {
-||||||| merged common ancestors
-  User.find({id: id}, function(err, user) {
-=======
-  User.findOne({ _id: id}, function(err, user) {
->>>>>>> refactor func names in UserCtrl for consistency
     if (err) {
       return cb(err);
     }
