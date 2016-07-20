@@ -1,4 +1,6 @@
 import React from 'react';
+import SignIn from './signin.jsx';
+import SignUp from './signup.jsx';
 
 export const InfoPanel = (props) => (
   <div className='infoPanel'>
@@ -7,5 +9,7 @@ export const InfoPanel = (props) => (
     <p>The skinny: {props.skateData.shortDescription}</p>
     <p>The fat: {props.skateData.detailedDescription}</p>
     <p>Bust? : {props.skateData.bust}</p>
+    <SignIn signin={props.signin} />
+    <SignUp signup={props.signup} />
   </div>
 );

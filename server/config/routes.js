@@ -38,8 +38,8 @@ module.exports = function (app, express) {
   var router = express.Router();
 
   // set up paths for router
-  router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), UserController.logIn);
-  router.post('/user', UserController.signUp);
+  router.post('/users/login', passport.authenticate('local', {failureRedirect: '/'}), UserController.logIn);
+  router.post('/users/signup', UserController.signUp);
   // set up paths for skatespot api
   router.get('/skatespots', SpotController.getSkateSpots);
   router.post('/skatespot', SpotController.saveSkateSpot);
