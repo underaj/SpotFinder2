@@ -143,7 +143,6 @@ export default class App extends React.Component {
       signInPanel = <div className='col-xs-4'>
       <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation}/>
       </div>
-                    
     } else {
         ourMap = <div className='col-xs-12'>
                   <div className='map-wrapper' style={mapStyle}>
