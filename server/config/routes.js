@@ -10,8 +10,9 @@ module.exports = function (app, express) {
   var router = express.Router();
 
   // set up paths for router
-  router.post('/users/login', passport.authenticate('local', {failureRedirect: '/'}), UserController.logIn);
+  router.post('/users/signin', passport.authenticate('local', {failureRedirect: '/'}), UserController.logIn);
   router.post('/users/signup', UserController.signUp);
+  router.get('/users/userDetail', UserController.getUserDetail);
   router.get('/users/logout', UserController.logOut);
   // set up paths for skatespot api
   router.get('/skatespots', SpotController.getSkateSpots);
