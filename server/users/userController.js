@@ -28,13 +28,18 @@ module.exports = {
   },
 
   logIn: function(req, res) {
-      console.log(req);
-      res.send('passport is working');
+    res.send('passport is working');
   },
 
   logOut: function(req, res) {
     req.logout();
-    console.log('hey hey');
     res.redirect('/');
+  },
+  getUserDetail: function(req, res) {
+    if (req.user) {
+      res.send(req.user);
+    } else {
+      res.send({username: 'anonymous'});
+    }
   }
 };

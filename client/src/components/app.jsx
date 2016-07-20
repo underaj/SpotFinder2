@@ -19,6 +19,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: undefined,
       skateSpots: dummyData,
       currentSpot: undefined,
       sidebarDisplayed: false,
@@ -30,6 +31,7 @@ export default class App extends React.Component {
   componentDidMount() {
     this.getSkateSpots();
     this.getGeo();
+    this.getUserDetail();
   }
 
   getSkateSpots() {
@@ -69,6 +71,7 @@ export default class App extends React.Component {
     this.props.apiPost('/api/users/signin', userObj)
       .then((data) => {
         console.log(data);
+        this.getUserDetail();
       });
   }
 
@@ -77,6 +80,15 @@ export default class App extends React.Component {
       .then((data) => {
         console.log(data);
       });
+  }
+
+  getUserDetail() {
+    this.props.apiGet('/api/users/userDetail', (userDetail) => {
+      console.log(userDetail);
+      this.setState({
+        user: userDetail 
+      });
+    });
   }
 
 
