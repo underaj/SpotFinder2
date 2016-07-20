@@ -1,6 +1,7 @@
 import React from 'react';
 import OurMap from './map.jsx';
 import {InfoPanel} from './infoPanel.jsx';
+import {SignInPanel} from './signInPanel.jsx';
 
 const dummyData = [
   {
@@ -108,6 +109,7 @@ export default class App extends React.Component {
     // our map and sideBar component goes into the div below adjacent to the h1
     var infoPanel;
     var ourMap;
+    var signInPanel;
     var mapStyle = {height: screen.height - 100};
 
     if (this.state.currentSpot && this.state.sidebarDisplayed) {
@@ -143,9 +145,10 @@ export default class App extends React.Component {
                   currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                 </div>
                </div>;
-      infoPanel = <div className='col-xs-4'>
-                    <InfoPanel skateData={this.state.currentSpot}/>
-                  </div>;
+      signInPanel = <div className='col-xs-4'>
+      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)}/>
+      </div>
+                    
     } else {
         ourMap = <div className='col-xs-12'>
                  <nav className="navbar navbar-default">
@@ -167,6 +170,7 @@ export default class App extends React.Component {
       <div className='row'>
         {ourMap}
         {infoPanel}
+        {signInPanel}
       </div>
     );
   }
