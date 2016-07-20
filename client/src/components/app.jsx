@@ -69,8 +69,13 @@ export default class App extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   changeCurrentSpot(spot) {
     if (spot) {
+=======
+  changeCurrentSpot(spot, sidebar) {
+    if (spot && sidebar) {
+>>>>>>> (feat) show user spot on map
       this.setState({
         currentSpot: spot,
         center: {lat: spot.lat, lng: spot.lng + 0.04},
