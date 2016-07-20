@@ -27,14 +27,16 @@ module.exports = {
     });
   },
 
-  logIn: function(req, res) {
-    res.send('passport is working');
+  signIn: function(req, res) {
+      console.log(req);
+      res.send('passport is working');
   },
 
-  logOut: function(req, res) {
+  signOut: function(req, res) {
     req.logout();
     res.redirect('/');
   },
+  
   getUserDetail: function(req, res) {
     if (req.user) {
       res.send(req.user);

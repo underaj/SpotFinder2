@@ -24,7 +24,8 @@ export default class App extends React.Component {
       currentSpot: undefined,
       sidebarDisplayed: false,
       center: {lat: 37.75, lng: -122.44},
-      zoom: 13
+      zoom: 13,
+      signInPanel: false
     };
   }
 
@@ -55,14 +56,16 @@ export default class App extends React.Component {
         currentSpot: spot,
         sidebarDisplayed: true,
         center: {lat: spot.lat, lng: spot.lng + 0.04},
-        zoom: 13
+        zoom: 13,
+        signInPanel: false
       });
     } else {
       this.setState({
         currentSpot: undefined,
         sidebarDisplayed: false,
         center: {lat: 37.75, lng: -122.44},
-        zoom: 13
+        zoom: 13,
+        signInPanel: false
       });
     }
   }
@@ -91,6 +94,15 @@ export default class App extends React.Component {
     });
   }
 
+  clickMe(){
+    this.setState({
+      // sidebarDisplayed: false,
+      currentSpot: undefined,
+      signInPanel: true
+    });
+    console.log('it tickles! ARRRRRGH!')
+  }
+
 
   render() {
     // our map and sideBar component goes into the div below adjacent to the h1
@@ -100,6 +112,14 @@ export default class App extends React.Component {
 
     if (this.state.currentSpot && this.state.sidebarDisplayed) {
       ourMap = <div className='col-xs-8'>
+                <nav className="navbar navbar-default">
+                  <div className="container-fluid">
+                    <div className="navbar-header">
+                      <span className="navbar-brand" onClick={this.clickMe.bind(this)}>SignIn
+                      </span>
+                    </div>
+                  </div>
+                </nav>
                 <div className='map-wrapper' style={mapStyle}>
                   <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                   currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
@@ -108,8 +128,34 @@ export default class App extends React.Component {
       infoPanel = <div className='col-xs-4'>
                     <InfoPanel skateData={this.state.currentSpot} signin={this.signin.bind(this)} signup={this.signup.bind(this)}/>
                   </div>;
+    } else if (this.state.signInPanel && this.state.currentSpot === undefined) {
+      ourMap = <div className='col-xs-8'>
+                <nav className="navbar navbar-default">
+                  <div className="container-fluid">
+                    <div className="navbar-header">
+                      <span className="navbar-brand" onClick={this.clickMe.bind(this)}>SignIn
+                      </span>
+                    </div>
+                  </div>
+                </nav>
+                <div className='map-wrapper' style={mapStyle}>
+                  <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
+                  currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
+                </div>
+               </div>;
+      infoPanel = <div className='col-xs-4'>
+                    <InfoPanel skateData={this.state.currentSpot}/>
+                  </div>;
     } else {
         ourMap = <div className='col-xs-12'>
+                 <nav className="navbar navbar-default">
+                  <div className="container-fluid">
+                    <div className="navbar-header">
+                      <span className="navbar-brand" onClick={this.clickMe.bind(this)}>SignIn
+                      </span>
+                    </div>
+                  </div>
+                </nav>
                   <div className='map-wrapper' style={mapStyle}>
                     <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                     currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
