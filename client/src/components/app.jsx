@@ -29,6 +29,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getSkateSpots();
+    this.getGeo();
   }
 
   getSkateSpots() {
@@ -36,6 +37,12 @@ export default class App extends React.Component {
       this.setState({
         skateSpots: skateSpots
       });
+    });
+  }
+
+  getGeo() {
+    this.props.getGeo((position) => {
+      console.log(position);
     });
   }
 
@@ -58,6 +65,21 @@ export default class App extends React.Component {
     }
   }
 
+  signin(userObj) {
+    this.props.apiPost('/api/users/signin', userObj)
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  signup(userObj) {
+    this.props.apiPost('/api/users/signup', userObj)
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+
   render() {
     // our map and sideBar component goes into the div below adjacent to the h1
     var infoPanel;
@@ -72,7 +94,7 @@ export default class App extends React.Component {
                 </div>
                </div>;
       infoPanel = <div className='col-xs-4'>
-                    <InfoPanel skateData={this.state.currentSpot}/>
+                    <InfoPanel skateData={this.state.currentSpot} signin={this.signin.bind(this)} signup={this.signup.bind(this)}/>
                   </div>;
     } else {
         ourMap = <div className='col-xs-12'>

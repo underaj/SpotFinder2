@@ -14,6 +14,10 @@ export const apiPost = function apiPost(path, postObj) {
   });
 };
 
-export const getGeo = function(geoSuck, geoError, geoOptions) {
-
-}
+export const getGeo = function getGeo(cb) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(cb);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+};
