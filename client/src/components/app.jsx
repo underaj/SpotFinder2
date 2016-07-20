@@ -29,6 +29,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getSkateSpots();
+    this.getGeo();
   }
 
   getSkateSpots() {
@@ -36,6 +37,12 @@ export default class App extends React.Component {
       this.setState({
         skateSpots: skateSpots
       });
+    });
+  }
+
+  getGeo() {
+    this.props.getGeo((position) => {
+      console.log(position);
     });
   }
 
