@@ -1,12 +1,8 @@
 var express = require('express');
 var app = express();
 var apiRoutes = require('./config/routes.js')(app, express);
-var passport = require('passport');
 
 var port = 3000;
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Initiate connection to mongo database
 // Create dummy data in database
