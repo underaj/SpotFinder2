@@ -27,7 +27,8 @@ export default class App extends React.Component {
       sidebarDisplayed: false,
       center: {lat: 37.75, lng: -122.44},
       zoom: 13,
-      signInPanel: false
+      signInPanel: false,
+      mode: 0
     };
   }
 
@@ -96,8 +97,11 @@ export default class App extends React.Component {
     });
   }
 
-  clickMe() {
+
+  clickMe(modeNum){
+    console.log(modeNum);
     this.setState({
+      mode: modeNum,
       // sidebarDisplayed: false,
       currentSpot: undefined,
       signInPanel: true
@@ -114,14 +118,6 @@ export default class App extends React.Component {
 
     if (this.state.currentSpot && this.state.sidebarDisplayed) {
       ourMap = <div className='col-xs-8'>
-                <nav className="navbar navbar-default">
-                  <div className="container-fluid">
-                    <div className="navbar-header">
-                      <span className="navbar-brand" onClick={this.clickMe.bind(this)}>SignIn
-                      </span>
-                    </div>
-                  </div>
-                </nav>
                 <div className='map-wrapper' style={mapStyle}>
                   <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                   currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
@@ -132,33 +128,17 @@ export default class App extends React.Component {
                   </div>;
     } else if (this.state.signInPanel && this.state.currentSpot === undefined) {
       ourMap = <div className='col-xs-8'>
-                <nav className="navbar navbar-default">
-                  <div className="container-fluid">
-                    <div className="navbar-header">
-                      <span className="navbar-brand" onClick={this.clickMe.bind(this)}>SignIn
-                      </span>
-                    </div>
-                  </div>
-                </nav>
                 <div className='map-wrapper' style={mapStyle}>
                   <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                   currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                 </div>
                </div>;
       signInPanel = <div className='col-xs-4'>
-      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)}/>
+      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode}/>
       </div>
                     
     } else {
         ourMap = <div className='col-xs-12'>
-                 <nav className="navbar navbar-default">
-                  <div className="container-fluid">
-                    <div className="navbar-header">
-                      <span className="navbar-brand" onClick={this.clickMe.bind(this)}>SignIn
-                      </span>
-                    </div>
-                  </div>
-                </nav>
                   <div className='map-wrapper' style={mapStyle}>
                     <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                     currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
@@ -168,6 +148,18 @@ export default class App extends React.Component {
     
     return (
       <div className='row'>
+       <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <div className="navbar-header">
+          <span className="navbar-brand" onClick={() => { this.clickMe(2)}}>SignIn
+          </span>
+          <span className="navbar-brand" onClick={() => { this.clickMe(1)}}>SignUp
+          </span>
+          <span className="navbar-brand" onClick={() => { this.clickMe(3)}}>Add a new spot
+          </span>
+          </div>
+        </div>
+      </nav>
         {ourMap}
         {infoPanel}
         {signInPanel}
