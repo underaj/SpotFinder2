@@ -24,7 +24,7 @@ export const SignInPanel = (props) => {
   if (props.mode === 3) {
     newSpot = <div>
     I am at a spot
-    <NewSpot userLocation={props.userLocation}/>
+    <NewSpot userLocation={props.userLocation} skateSpots={props.skateSpots}/>
     </div>
   }
 

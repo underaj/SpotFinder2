@@ -1,5 +1,5 @@
 import React from 'react';
-import {apiPost} from '../helper.js'; 
+import { apiPost, haversineDistance } from '../helper.js'; 
 
 export default class NewSpot extends React.Component {
   constructor(props) {
@@ -57,16 +57,26 @@ export default class NewSpot extends React.Component {
   handleAddSpot(e){
     e.preventDefault();
     e.stopPropagation();
-    apiPost('/api/skatespots', this.state);
-    this.setState({
-      name: '',
-      address:'',
-      lat: this.props.userLocation.lat,
-      lng: this.props.userLocation.lng,
-      shortDescription: '',
-      detailedDescription: '',
-      bust: ''
+    var conflict = false;
+    this.props.skateSpots.forEach(function(spot) {
+      if (haversineDistance(spot, this.state) > 0.5) {
+        conflict = true;
+      }
     });
+    if (conflict === true) {
+      // TODO show some hidden element and let the client know they are too close to a current spot
+    } else {
+        apiPost('/api/skatespots', this.state);
+        this.setState({
+          name: '',
+          address:'',
+          lat: this.props.userLocation.lat,
+          lng: this.props.userLocation.lng,
+          shortDescription: '',
+          detailedDescription: '',
+          bust: ''
+        });
+      }
   }
 
 	render() {
