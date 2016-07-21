@@ -1,8 +1,12 @@
 .tooltip-wrapper {
   background-color: black;
   width: 100px;
+}
 
 .map-wrapper {
   width: auto;
 }
 
+.navbar {
+  margin-bottom: 0px;
+}
