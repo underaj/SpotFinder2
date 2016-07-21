@@ -6,13 +6,13 @@ import {Nav} from './nav.jsx';
 
 const dummyData = [
   {
-    name: 'DOOP DOOP',
-    icon: 'hi AJ',
-    lat:37.77397,
-    lng: -122.43129,
-    address: '1st street',
-    shortDescription: 'this spot is rad',
-    detailedDescription: 'BLA BLA BLA SOOOO GOOOOOOD',
+    name: '',
+    icon: '',
+    lat: 0,
+    lng: 0,
+    address: '',
+    shortDescription: '',
+    detailedDescription: '',
     bust: 'hello hello',
     checkin: []
   }
@@ -27,10 +27,10 @@ export default class App extends React.Component {
       skateSpots: dummyData,
       currentSpot: undefined,
       infoPanel: false,
-      center: {lat: 37.75, lng: -122.44},
-      zoom: 13,
       signInPanel: false,
-      mode: 0
+      mode: 0,
+      center: {lat: 37.75, lng: -122.44},
+      zoom: 13
     };
   }
 
@@ -145,13 +145,14 @@ export default class App extends React.Component {
                       <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                       currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                     </div>
+
     if (this.state.signInPanel || this.state.infoPanel) {
       ourMap = <div className='col-xs-8'>
                 {googleMap}
                </div>;
       if (this.state.infoPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <InfoPanel skateData={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)} />
+                      <InfoPanel skateSpotData={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)} />
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>
