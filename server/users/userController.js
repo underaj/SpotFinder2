@@ -28,8 +28,7 @@ module.exports = {
   },
 
   signIn: function(req, res) {
-      console.log(req);
-      res.send('passport is working');
+    res.send('passport is working');
   },
 
   signOut: function(req, res) {

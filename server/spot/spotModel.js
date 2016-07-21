@@ -1,5 +1,10 @@
 var mongoose = require('mongoose');
 
+var user = mongoose.Schema({
+  username: String,
+  password: String
+});
+
 var skateSpotSchema = mongoose.Schema({
 	name: String,
   icon: String,
@@ -8,7 +13,8 @@ var skateSpotSchema = mongoose.Schema({
 	address: String,
 	shortDescription: String,
 	detailedDescription: String,
-  bust: String
+  bust: String,
+  checkin: [user]
 });
 var SkateSpot = mongoose.model('SkateSpot', skateSpotSchema);
 
