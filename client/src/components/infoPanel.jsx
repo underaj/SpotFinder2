@@ -3,13 +3,16 @@ import SignIn from './signin.jsx';
 import SignUp from './signup.jsx';
 import { haversineDistance } from '../helper.js';
 
-export class InfoPanel extends React.Component {
+export default class InfoPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      newComment : '',
+      username: this.props.user.username,
+      locationId: this.props.skateData._id,
       userWithinDistance: undefined
     };
-  }
+  } 
 
   checkin() {
     var distance = haversineDistance({lat: this.props.currentSpot.lat, lng: this.props.currentSpot.lng}, this.props.userLocation);
@@ -18,6 +21,25 @@ export class InfoPanel extends React.Component {
     } else {
       this.setState({
         userWithinDistance: false
+      });
+    }
+  }
+
+  handleComment(e) {
+    this.setState({
+      newComment: e.target.value
+    });
+  }
+
+  postComment(e) {
+    e.preventDefault();
+    if (this.state.username === 'anonymous' || this.state.newComment.length < 1) {
+      console.log('nope');
+      //TODO tell user to login in
+    } else {
+      apiPost('/api/skatespot/comment', this.state).then((data) => {
+        console.log(data);
+        // this.props.skateData.comments = data;
       });
     }
   }
@@ -55,20 +77,20 @@ export class InfoPanel extends React.Component {
               {checkedInUser}
               {checkin}
               <label>Comments</label>
+              <p>Comments</p>
               {this.props.currentSpot.comments.map((comment)=>
                 <p>{comment.username} : {comment.comment}</p>
               )}
               <label>Add Comment</label>
-              <form>
+              <form onSubmit={this.postComment.bind(this)}>
                 <div className="form-group">
                     <label className="sr-only" >Detailed description</label>
-                    <textarea type="text" placeholder='Leave a Comment' className="form-control" ></textarea>
+                    <textarea type="text" placeholder='Leave a Comment' value={this.state.newComment} 
+                    onChange={this.handleComment.bind(this)} className="form-control" ></textarea>
                 </div>
-                <button className="btn" >Add spot</button>
+                <button className="btn" >Send</button>
               </form>
             </div>);
   }
 }
-
-
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import OurMap from './map.jsx';
-import {InfoPanel} from './infoPanel.jsx';
+import InfoPanel from './infoPanel.jsx';
 import {SignInPanel} from './signInPanel.jsx';
 import {Nav} from './nav.jsx';
 

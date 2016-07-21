@@ -38,12 +38,13 @@ module.exports = {
 	},
 
   addComment: function(req, res) {
+  	console.log(req.body);
   	SkateSpot.findOne({'_id': req.body.locationId}, function(err, skatespot) {
   		if (err) {
   			console.error(err);
   			res.send(404);
   		} else {
-  			skatespot.update({ "$addToSet": {comments: {username: req.user.username, comment: req.body.comment} } }, function(err, comments) {
+  			skatespot.update({ "$addToSet": {comments: {username: req.body.username, comment: req.body.newComment} } }, function(err, comments) {
   				if (err) {
   					console.error(err);
   					res.send(404);
@@ -55,5 +56,5 @@ module.exports = {
   		}
   	});
   }
-  
+
 };
