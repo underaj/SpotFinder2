@@ -11,7 +11,7 @@ export class InfoPanel extends React.Component {
     };
   }
 
-  checkIn() {
+  checkin() {
     var distance = haversineDistance({lat: this.props.skateSpotData.lat, lng: this.props.skateSpotData.lng}, this.props.userLocation);
     if (distance < 0.5) {
       this.props.checkIn({locationId: this.props.skateSpotData._id});    
@@ -24,17 +24,25 @@ export class InfoPanel extends React.Component {
 
   render() {
     var checkin;
+    var checkedIn = false;
     var checkedInUser;
-    if (this.props.user._id) {
+
+    if (this.props.skateSpotData.checkin.length > 0) {
+      checkedInUser = this.props.skateSpotData.checkin.map((user) => {
+        if (user._id === this.props.user._id) {
+          checkedIn = true;
+        }
+
+        return (<p>{user.username}</p>);
+      });
+    }
+
+    if (this.props.user._id && checkedIn === false) {
       if (this.state.userWithinDistance === false) {
         checkin = <p>User is too far away from spot to check in</p>;
       } else {
-        checkin = <button onClick={ () => this.checkIn() }>Check In</button>;
+        checkin = <button onClick={ () => this.checkin() }>Check In</button>;
       }
-    }
-
-    if (this.props.skateSpotData.checkin.length > 0) {
-      checkedInUser = this.props.skateSpotData.checkin.map((user) => <p>{user.username}</p>) ;
     }
 
     return (<div className='infoPanel'>
