@@ -15,6 +15,7 @@ module.exports = {
 			res.send(result);
 		});
 	},
+	
 	getSkateSpots: function(req, res) {		
 		SkateSpot.find()
 			.exec(function(err, skateSpots) {

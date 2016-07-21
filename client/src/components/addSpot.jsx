@@ -1,23 +1,23 @@
 import React from 'react';
-import {apiPost} from '../helper.js';
+import {apiPost} from '../helper.js'; 
 
 export default class NewSpot extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      spotName: '',
+      name: '',
       address:'',
       lat: this.props.userLocation.lat,
       lng: this.props.userLocation.lng,
-      shortDesc: '',
-      detailedDesc: '',
+      shortDescription: '',
+      detailedDescription: '',
       bust: ''
     }
   }
 
   handleSpotName(e) {
     this.setState({
-      spotName: e.target.value
+      name: e.target.value
     });
   }
 
@@ -29,13 +29,13 @@ export default class NewSpot extends React.Component {
 
   handleShortDesc(e) {
     this.setState({
-      shortDesc: e.target.value
+      shortDescription: e.target.value
     });
   }
 
   handleDetailedDesc(e) {
     this.setState({
-      detailedDesc: e.target.value
+      detailedDescription: e.target.value
     });
   }
 
@@ -57,7 +57,16 @@ export default class NewSpot extends React.Component {
   handleAddSpot(e){
     e.preventDefault();
     e.stopPropagation();
-    apiPost('/api/skatespot', this.state);
+    apiPost('/api/skatespots', this.state);
+    this.setState({
+      name: '',
+      address:'',
+      lat: this.props.userLocation.lat,
+      lng: this.props.userLocation.lng,
+      shortDescription: '',
+      detailedDescription: '',
+      bust: ''
+    });
   }
 
 	render() {
@@ -66,7 +75,7 @@ export default class NewSpot extends React.Component {
   		<form>
   		    <div className="form-group">
   		        <label className="sr-only">Spot name</label>
-  		        <input type="text" placeholder="name" className="form-control" id="spotName" value={this.state.spotName} onChange={this.handleSpotName.bind(this)} />
+  		        <input type="text" placeholder="Spot Name" className="form-control" id="spotName" value={this.state.name} onChange={this.handleSpotName.bind(this)} />
   		    </div>
   		    <div className="form-group">
   		        <label className="sr-only">Address</label>
@@ -74,11 +83,11 @@ export default class NewSpot extends React.Component {
   		    </div>
   		    <div className="form-group">
   		        <label className="sr-only">Short description</label>
-  		        <input type="text" name="subject" placeholder="" className="form-control" id="short" value={this.state.shortDesc} onChange={this.handleShortDesc.bind(this)} />
+  		        <input type="text" name="subject" placeholder="Short description" className="form-control" id="short" value={this.state.shortDescription} onChange={this.handleShortDesc.bind(this)} />
   		    </div>
   		    <div className="form-group">
   		        <label className="sr-only" >Detailed description</label>
-  		        <textarea type="text" name="message" placeholder="" className="form-control" id="detailed" value={this.state.detailedDesc} onChange={this.handleDetailedDesc.bind(this)}></textarea>
+  		        <textarea type="text" name="message" placeholder="Detailed description : Whats there? Is the ground good?" className="form-control" id="detailed" value={this.state.detailedDescription} onChange={this.handleDetailedDesc.bind(this)}></textarea>
   		    </div>
   		    <div className="form-group">
   		        <label className="sr-only">Bust</label>

@@ -16,9 +16,19 @@ module.exports = function (app, express) {
   router.get('/users/logout', UserController.signOut);
   // set up paths for skatespot api
   router.get('/skatespots', SpotController.getSkateSpots);
-  router.post('/skatespot', SpotController.saveSkateSpot);
+  router.post('/skatespots', isLoggedIn, SpotController.saveSkateSpot);
   router.post('/skatespot/checkin', SpotController.checkIn);
 
 
   return router;
 };
+
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}

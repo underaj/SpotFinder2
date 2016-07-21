@@ -21,12 +21,20 @@ export default class SignUp extends React.Component {
     });
   }
 
+  clickSignUp() {
+    this.props.signup(this.state)
+    this.setState({
+      username: '',
+      password: ''
+    });
+  }
+
   render() {
     return (
       <div>
         <input className='name-input' value={this.state.username} onChange={this.handleUsername.bind(this)} />
         <input type='password' className='name-input' value={this.state.password} onChange={this.handlePassword.bind(this)} />
-        <button className='btn' onClick={  ()=> this.props.signup(this.state) } >Sign Up</button>
+        <button className='btn' onClick={this.clickSignUp.bind(this)} >Sign Up</button>
       </div>
     );  
   }

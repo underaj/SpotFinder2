@@ -2,6 +2,7 @@ import React from 'react';
 import OurMap from './map.jsx';
 import {InfoPanel} from './infoPanel.jsx';
 import {SignInPanel} from './signInPanel.jsx';
+import {Nav} from './nav.jsx';
 
 const dummyData = [
   {
@@ -106,14 +107,13 @@ export default class App extends React.Component {
       });
   }
 
-  clickMe(modeNum){
+  clickNav(modeNum){
     console.log(modeNum);
     this.setState({
       mode: modeNum,
       currentSpot: undefined,
       signInPanel: true
     });
-    console.log('it tickles! ARRRRRGH!');
   }
 
   render() {
@@ -143,7 +143,6 @@ export default class App extends React.Component {
       signInPanel = <div className='col-xs-4'>
       <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation}/>
       </div>
-                    
     } else {
         ourMap = <div className='col-xs-12'>
                   <div className='map-wrapper' style={mapStyle}>
@@ -155,18 +154,7 @@ export default class App extends React.Component {
     
     return (
       <div className='row'>
-       <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-          <span className="navbar-brand" onClick={() => { this.clickMe(2)}}>SignIn
-          </span>
-          <span className="navbar-brand" onClick={() => { this.clickMe(1)}}>SignUp
-          </span>
-          <span className="navbar-brand" onClick={() => { this.clickMe(3)}}>Add a new spot
-          </span>
-          </div>
-        </div>
-      </nav>
+      <Nav clickNav={this.clickNav.bind(this)} />
         {ourMap}
         {infoPanel}
         {signInPanel}

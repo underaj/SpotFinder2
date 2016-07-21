@@ -21,6 +21,7 @@ module.exports = {
             return console.error(err);
           }
           // console.log('saved to db ', user);
+          
           res.sendStatus(201);
         });
       }
@@ -35,7 +36,7 @@ module.exports = {
     req.logout();
     res.redirect('/');
   },
-  
+
   getUserDetail: function(req, res) {
     if (req.user) {
       res.send(req.user);
