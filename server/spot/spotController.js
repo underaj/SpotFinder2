@@ -26,9 +26,12 @@ module.exports = {
 			});
 	},
 	checkIn: function(req,res) {
+		console.log(req.body);
+		console.log(req.user);
 		SkateSpot.findOne({'_id': req.body.locationId}, function(err, skatespot) {
 			skatespot.update( { "$addToSet": { checkin: req.user }}, function(err, list) {
 				console.log(list);
+				res.send();
 			});
 		});
 	}

@@ -12,7 +12,8 @@ const dummyData = [
     address: '1st street',
     shortDescription: 'this spot is rad',
     detailedDescription: 'BLA BLA BLA SOOOO GOOOOOOD',
-    bust: 'hello hello'
+    bust: 'hello hello',
+    checkin: []
   }
 ];
 
@@ -98,6 +99,13 @@ export default class App extends React.Component {
     });
   }
 
+  checkIn(checkinObj) {
+    this.props.apiPost('/api/skatespot/checkin', checkinObj)
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
   clickMe(modeNum){
     console.log(modeNum);
     this.setState({
@@ -123,7 +131,7 @@ export default class App extends React.Component {
                 </div>
                </div>;
       infoPanel = <div className='col-xs-4'>
-                    <InfoPanel skateData={this.state.currentSpot} user={this.state.user} checkIn={this.checkIn.bind(this)} signin={this.signin.bind(this)} signup={this.signup.bind(this)}/>
+                    <InfoPanel skateData={this.state.currentSpot} user={this.state.user} checkIn={this.checkIn.bind(this)} />
                   </div>;
     } else if (this.state.signInPanel && this.state.currentSpot === undefined) {
       ourMap = <div className='col-xs-8'>
