@@ -23,6 +23,7 @@ module.exports = {
           // console.log('saved to db ', user);
           req.login(user, function(err) {
             if (err) {
+              console.error('login error ', err);
               res.sendStatus(404);
             } else {
               res.sendStatus(201);
