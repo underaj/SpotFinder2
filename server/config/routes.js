@@ -17,6 +17,7 @@ module.exports = function (app, express) {
   // set up paths for skatespot api
   router.get('/skatespots', SpotController.getSkateSpots);
   router.post('/skatespot', SpotController.saveSkateSpot);
+  router.post('/skatespot/checkin', SpotController.checkIn);
 
 
   return router;

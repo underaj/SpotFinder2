@@ -24,5 +24,7 @@ module.exports = {
 					res.send(skateSpots);
 				}
 			});
+	},
+	checkIn: function(req,res) {
 	}
 };

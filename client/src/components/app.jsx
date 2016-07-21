@@ -56,6 +56,7 @@ export default class App extends React.Component {
   }
 
   changeCurrentSpot(spot, sidebar) {
+    console.log(spot);
     if (spot && sidebar) {
       this.setState({
         currentSpot: spot,
@@ -97,7 +98,6 @@ export default class App extends React.Component {
     });
   }
 
-
   clickMe(modeNum){
     console.log(modeNum);
     this.setState({
@@ -123,7 +123,7 @@ export default class App extends React.Component {
                 </div>
                </div>;
       infoPanel = <div className='col-xs-4'>
-                    <InfoPanel skateData={this.state.currentSpot} signin={this.signin.bind(this)} signup={this.signup.bind(this)}/>
+                    <InfoPanel skateData={this.state.currentSpot} user={this.state.user} checkIn={this.checkIn.bind(this)} signin={this.signin.bind(this)} signup={this.signup.bind(this)}/>
                   </div>;
     } else if (this.state.signInPanel && this.state.currentSpot === undefined) {
       ourMap = <div className='col-xs-8'>
