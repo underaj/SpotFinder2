@@ -58,6 +58,15 @@ export default class NewSpot extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     apiPost('/api/skatespots', this.state);
+    this.setState({
+      name: '',
+      address:'',
+      lat: this.props.userLocation.lat,
+      lng: this.props.userLocation.lng,
+      shortDescription: '',
+      detailedDescription: '',
+      bust: ''
+    });
   }
 
 	render() {

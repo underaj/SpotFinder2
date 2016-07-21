@@ -16,7 +16,6 @@ export default class SignIn extends React.Component {
   }
 
   handlePassword(event) {
-    console.log(this.state.password)
     this.setState({
       password: event.target.value
     });
