@@ -1,7 +1,7 @@
 import React from'react';
 import SignIn from './signin.jsx';
 import SignUp from './signup.jsx';
-import {NewSpot} from './addSpot.jsx';
+import NewSpot from './addSpot.jsx';
 
 export const SignInPanel = (props) => {
 

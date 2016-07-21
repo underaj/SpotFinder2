@@ -102,7 +102,6 @@ export default class App extends React.Component {
     console.log(modeNum);
     this.setState({
       mode: modeNum,
-      // sidebarDisplayed: false,
       currentSpot: undefined,
       signInPanel: true
     });
