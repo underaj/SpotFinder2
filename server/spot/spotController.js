@@ -27,6 +27,7 @@ module.exports = {
 				}
 			});
 	},
+
 	checkIn: function(req,res) {
 		SkateSpot.findOne({'_id': req.body.locationId}, function(err, skatespot) {
 			skatespot.update( { "$addToSet": { checkin: req.user }}, function(err, list) {
@@ -34,5 +35,25 @@ module.exports = {
 				res.send();
 			});
 		});
-	}
+	},
+
+  addComment: function(req, res) {
+  	SkateSpot.findOne({'_id': req.body.locationId}, function(err, skatespot) {
+  		if (err) {
+  			console.error(err);
+  			res.send(404);
+  		} else {
+  			skatespot.update({ "$addToSet": {comments: {username: req.user.username, comment: req.body.comment} } }, function(err, comments) {
+  				if (err) {
+  					console.error(err);
+  					res.send(404);
+  				} else {
+	  				console.log(comments);
+	  				res.json(comments);
+	  			}
+  			});
+  		}
+  	});
+  }
+  
 };

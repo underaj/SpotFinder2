@@ -54,6 +54,18 @@ export class InfoPanel extends React.Component {
               <p>Users checked in:</p>
               {checkedInUser}
               {checkin}
+              <label>Comments</label>
+              {this.props.currentSpot.comments.map((comment)=>
+                <p>{comment.username} : {comment.comment}</p>
+              )}
+              <label>Add Comment</label>
+              <form>
+                <div className="form-group">
+                    <label className="sr-only" >Detailed description</label>
+                    <textarea type="text" placeholder='Leave a Comment' className="form-control" ></textarea>
+                </div>
+                <button className="btn" >Add spot</button>
+              </form>
             </div>);
   }
 }

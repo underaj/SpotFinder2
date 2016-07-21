@@ -14,6 +14,7 @@ const dummyData = [
     shortDescription: '',
     detailedDescription: '',
     bust: 'hello hello',
+    comments: [],
     checkin: []
   }
 ];

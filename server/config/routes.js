@@ -18,6 +18,7 @@ module.exports = function (app, express) {
   router.get('/skatespots', SpotController.getSkateSpots);
   router.post('/skatespots', isLoggedIn, SpotController.saveSkateSpot);
   router.post('/skatespot/checkin', SpotController.checkIn);
+  router.post('/skatespot/comment', SpotController.addComment);
 
 
   return router;

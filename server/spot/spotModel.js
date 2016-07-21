@@ -14,6 +14,7 @@ var skateSpotSchema = mongoose.Schema({
 	shortDescription: String,
 	detailedDescription: String,
   bust: String,
+  comments: [{username: String, comment: String}],
   checkin: [user]
 });
 
