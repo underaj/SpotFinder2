@@ -4,40 +4,37 @@ export const Nav = (props) => {
 
   if (props.user !== "anonymous"){
     return (
-    
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
-        <div className="navbar-header">
-        <span className="navbar-brand" onClick={() => { props.clickNav(2)}}>SignIn
-        </span>
-        <span className="navbar-brand" onClick={() => { props.clickNav(1)}}>SignUp
-        </span>
-        <span className="navbar-brand" onClick={() => { props.clickNav(3)}}>Add a new spot
-        </span>
-        <span className="navbar-brand" onClick={() => {props.signout()}}>Sign out
-          </span>
-        <span className="greeting">Hey there, {props.user}</span>
+      <nav className="navbar navbar-default">
+        <div className="container">
+          <ul className="nav navbar-nav">
+            <li onClick={() => { props.clickNav(3)}}>
+              <a>Add a new spot</a>
+            </li>
+            <li onClick={() => {props.signout()}}>
+              <a>Sign out</a>
+            </li>
+          </ul>
+          <p className="navbar-text navbar-right greeting">
+            Hey there, {props.user}!
+          </p>
         </div>
-      </div>
-    </nav>
-  );
+      </nav>
+    );
   } else {
     return (
       <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-          <span className="navbar-brand" onClick={() => { props.clickNav(2)}}>SignIn
-          </span>
-          <span className="navbar-brand" onClick={() => { props.clickNav(1)}}>SignUp
-          </span>
-          <span className="navbar-brand" onClick={() => { props.clickNav(3)}}>Add a new spot
-          </span>
-          <span className="navbar-brand" onClick={() => { props.signout()}}>Sign out
-          </span>
-          </div>
+        <div className="container">
+          <ul className="nav navbar-nav">
+            <li onClick={() => { props.clickNav(2)}}>
+              <a>Sign In</a>
+            </li>
+            <li onClick={() => { props.clickNav(1)}}>
+              <a>Sign Up</a>
+            </li>
+          </ul>
         </div>
       </nav>
-      )
+    );
   }
 
 };
