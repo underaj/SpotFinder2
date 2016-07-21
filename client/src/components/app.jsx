@@ -89,7 +89,16 @@ export default class App extends React.Component {
     this.props.apiPost('/api/users/signup', userObj)
       .then((data) => {
         //console.log(data);
+        this.getUserDetail();
       });
+  }
+
+  signout() {
+    this.props.apiGet('/api/users/logout', () => {
+      this.setState({
+        user: {username: 'anonymous'} 
+      });
+    });
   }
 
   getUserDetail() {
@@ -136,7 +145,7 @@ export default class App extends React.Component {
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>
-                        <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation}/>
+                        <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots}/>
                       </div>
       }
     } else {
@@ -147,7 +156,7 @@ export default class App extends React.Component {
     
     return (
       <div className='row'>
-        <Nav clickNav={this.clickNav.bind(this)} user={this.state.user.username}/>
+        <Nav clickNav={this.clickNav.bind(this)} user={this.state.user.username} signout={this.signout.bind(this)}/>
         {ourMap}
         {sidePanel}
       </div>

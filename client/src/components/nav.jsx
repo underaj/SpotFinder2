@@ -14,6 +14,8 @@ export const Nav = (props) => {
         </span>
         <span className="navbar-brand" onClick={() => { props.clickNav(3)}}>Add a new spot
         </span>
+        <span className="navbar-brand" onClick={() => {props.signout()}}>Sign out
+          </span>
         <span className="greeting">Hey there, {props.user}</span>
         </div>
       </div>
@@ -29,6 +31,8 @@ export const Nav = (props) => {
           <span className="navbar-brand" onClick={() => { props.clickNav(1)}}>SignUp
           </span>
           <span className="navbar-brand" onClick={() => { props.clickNav(3)}}>Add a new spot
+          </span>
+          <span className="navbar-brand" onClick={() => { props.signout()}}>Sign out
           </span>
           </div>
         </div>
