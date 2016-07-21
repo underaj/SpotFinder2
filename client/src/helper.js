@@ -23,7 +23,7 @@ export const getGeo = function getGeo(cb) {
 };
 
 const toRad = (diff) => {
-  return diff * Math.PI() / 180;
+  return diff * Math.PI / 180;
 };
 
 export const haversineDistance = (storedSpot, userLoc) => {

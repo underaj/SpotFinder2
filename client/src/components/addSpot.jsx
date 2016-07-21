@@ -11,7 +11,8 @@ export default class NewSpot extends React.Component {
       lng: this.props.userLocation.lng,
       shortDescription: '',
       detailedDescription: '',
-      bust: ''
+      bust: '',
+      visibility: 'hidden'
     }
   }
 
@@ -58,12 +59,16 @@ export default class NewSpot extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     var conflict = false;
+    var user = this.state;
     this.props.skateSpots.forEach(function(spot) {
-      if (haversineDistance(spot, this.state) > 0.5) {
+      if (haversineDistance(spot, user) < 0.5) {
         conflict = true;
       }
     });
     if (conflict === true) {
+      this.setState({
+        visibility: 'visible'
+      })
       // TODO show some hidden element and let the client know they are too close to a current spot
     } else {
         apiPost('/api/skatespots', this.state);
@@ -103,7 +108,9 @@ export default class NewSpot extends React.Component {
   		        <label className="sr-only">Bust</label>
   		        <input type="text" name="subject" placeholder="bust" className="form-control" id="bust" value={this.state.bust} onChange={this.handleBust.bind(this)}/>
   		    </div>
+          <p className={this.state.visibility}>There is already a post for this location.</p>
           <button className="btn" onClick={this.handleLocationButton.bind(this)}>Use my location</button>
+          <p></p>
   		    <button className="btn" onClick={this.handleAddSpot.bind(this)}>Add spot</button>
   		</form>
   		</div>
