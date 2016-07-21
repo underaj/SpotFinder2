@@ -21,8 +21,14 @@ module.exports = {
             return console.error(err);
           }
           // console.log('saved to db ', user);
+          req.login(user, function(err) {
+            if (err) {
+              res.sendStatus(404);
+            } else {
+              res.sendStatus(201);
+            }
+          });
           
-          res.sendStatus(201);
         });
       }
     });
