@@ -127,7 +127,6 @@ export default class App extends React.Component {
                       <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                       currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                     </div>
-
     if (this.state.signInPanel || this.state.infoPanel) {
       ourMap = <div className='col-xs-8'>
                 {googleMap}
