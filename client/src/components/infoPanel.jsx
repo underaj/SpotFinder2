@@ -17,7 +17,7 @@ export const InfoPanel = (props) => (
 
 export const InfoPanel = (props) => {
 
-  var checkin = props.user._id ? <button onClick={() => props.checkIn({user:props.user, locationId: props.skateData._id})}>Check In</button> : '';
+  var checkin = props.user._id ? <button onClick={() => props.checkIn({locationId: props.skateData._id})}>Check In</button> : '';
 
   return (<div className='infoPanel'>
             <h3 className='display'>{props.skateData.name}</h3>

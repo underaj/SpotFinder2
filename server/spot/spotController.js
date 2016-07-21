@@ -26,5 +26,10 @@ module.exports = {
 			});
 	},
 	checkIn: function(req,res) {
+		SkateSpot.findOne({'_id': req.body.locationId}, function(err, skatespot) {
+			skatespot.update( { "$addToSet": { checkin: req.user }}, function(err, list) {
+				console.log(list);
+			});
+		});
 	}
 };
