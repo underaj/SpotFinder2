@@ -26,7 +26,7 @@ export default class App extends React.Component {
       userLocation: {lat:0, lng:0},
       skateSpots: dummyData,
       currentSpot: undefined,
-      sidebarDisplayed: false,
+      infoPanel: false,
       center: {lat: 37.75, lng: -122.44},
       zoom: 13,
       signInPanel: false,
@@ -35,8 +35,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getSkateSpots();
     this.getGeo();
+    this.getSkateSpots();
     this.getUserDetail();
   }
 
@@ -57,22 +57,22 @@ export default class App extends React.Component {
     });
   }
 
-  changeCurrentSpot(spot, sidebar) {
+  changeCurrentSpot(spot) {
     console.log(spot);
-    if (spot && sidebar) {
+    if (spot) {
       this.setState({
         currentSpot: spot,
-        sidebarDisplayed: true,
         center: {lat: spot.lat, lng: spot.lng + 0.04},
         zoom: 13,
+        infoPanel: true,
         signInPanel: false
       });
     } else {
       this.setState({
         currentSpot: undefined,
-        sidebarDisplayed: false,
         center: {lat: 37.75, lng: -122.44},
         zoom: 13,
+        infoPanel: false,
         signInPanel: false
       });
     }
@@ -108,56 +108,50 @@ export default class App extends React.Component {
   }
 
   clickNav(modeNum){
-    console.log(modeNum);
+    console.log(this.state);
     this.setState({
       mode: modeNum,
       currentSpot: undefined,
+      infoPanel: false,
       signInPanel: true
     });
   }
 
   render() {
     // our map and sideBar component goes into the div below adjacent to the h1
-    var infoPanel;
+    var sidePanel;
     var ourMap;
-    var signInPanel;
-    var mapStyle = {height: screen.height - 100};
+    var mapStyle = {height: screen.height - (0.15*screen.height)};
 
-    if (this.state.currentSpot && this.state.sidebarDisplayed) {
+    var googleMap = <div className='map-wrapper' style={mapStyle}>
+                      <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
+                      currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
+                    </div>
+
+    if (this.state.signInPanel || this.state.infoPanel) {
       ourMap = <div className='col-xs-8'>
-                <div className='map-wrapper' style={mapStyle}>
-                  <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                  currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
-                </div>
+                {googleMap}
                </div>;
-      infoPanel = <div className='col-xs-4'>
-                    <InfoPanel skateData={this.state.currentSpot} user={this.state.user} checkIn={this.checkIn.bind(this)} />
-                  </div>;
-    } else if (this.state.signInPanel && this.state.currentSpot === undefined) {
-      ourMap = <div className='col-xs-8'>
-                <div className='map-wrapper' style={mapStyle}>
-                  <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                  currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
-                </div>
-               </div>;
-      signInPanel = <div className='col-xs-4'>
-      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation}/>
-      </div>
+      if (this.state.infoPanel) {
+        sidePanel = <div className='col-xs-4'>
+                      <InfoPanel skateData={this.state.currentSpot} user={this.state.user} checkIn={this.checkIn.bind(this)} />
+                    </div>;
+      } else if (this.state.signInPanel) {
+        sidePanel = <div className='col-xs-4'>
+                        <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation}/>
+                      </div>
+      }
     } else {
         ourMap = <div className='col-xs-12'>
-                  <div className='map-wrapper' style={mapStyle}>
-                    <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                    currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
-                  </div>
+                  {googleMap}
                  </div>;
     }
     
     return (
       <div className='row'>
-      <Nav clickNav={this.clickNav.bind(this)} />
+        <Nav clickNav={this.clickNav.bind(this)} />
         {ourMap}
-        {infoPanel}
-        {signInPanel}
+        {sidePanel}
       </div>
     );
   }
