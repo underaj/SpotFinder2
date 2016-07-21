@@ -42,9 +42,20 @@ export default class App extends React.Component {
 
   getSkateSpots() {
     this.props.apiGet('/api/skateSpots', (skateSpots) => {
-      this.setState({
-        skateSpots: skateSpots
-      });
+      if (this.state.currentSpot) {
+        skateSpots.forEach( (skateSpot) => {
+          if (skateSpot._id === this.state.currentSpot._id) {
+            this.setState({
+              currentSpot: skateSpot,
+              skatespots: skateSpots
+            });
+          }
+        });
+      } else {
+        this.setState({
+          skateSpots: skateSpots
+        });
+      }
     });
   }
 
@@ -58,7 +69,6 @@ export default class App extends React.Component {
   }
 
   changeCurrentSpot(spot) {
-    console.log(spot);
     if (spot) {
       this.setState({
         currentSpot: spot,
@@ -112,7 +122,7 @@ export default class App extends React.Component {
   checkIn(checkinObj) {
     this.props.apiPost('/api/skatespot/checkin', checkinObj)
       .then((data) => {
-        console.log(data);
+        this.getSkateSpots();
       });
   }
 
