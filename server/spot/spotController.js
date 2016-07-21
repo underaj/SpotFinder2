@@ -3,6 +3,7 @@ var SkateSpot = require('./spotModel.js');
 module.exports = {
 	saveSkateSpot: function(req, res) {
 		//will need to add the pre-save option later
+		//TODO check if user is authorized via req.user
 		var skateSpot = req.body;
 		var newSkateSpot = new SkateSpot(skateSpot);
 		newSkateSpot.save(function(err, result) {
