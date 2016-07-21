@@ -37,10 +37,7 @@ export default class InfoPanel extends React.Component {
       console.log('nope');
       //TODO tell user to login in
     } else {
-      apiPost('/api/skatespot/comment', this.state).then((data) => {
-        console.log(data);
-        // this.props.skateData.comments = data;
-      });
+      this.props.postComment(this.state);
     }
   }
 

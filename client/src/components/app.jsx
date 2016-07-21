@@ -127,6 +127,14 @@ export default class App extends React.Component {
       });
   }
 
+  postComment(commentObj) {
+    this.props.apiPost('/api/skatespot/comment', commentObj)
+    .then((data) => {
+      console.log(data);
+      this.getSkateSpots();
+    });
+  }
+
   clickNav(modeNum){
     this.setState({
       mode: modeNum,
@@ -153,7 +161,7 @@ export default class App extends React.Component {
                </div>;
       if (this.state.infoPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <InfoPanel currentSpot={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)} />
+                      <InfoPanel currentSpot={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)}  postComment={this.postComment.bind(this)}/>  
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>

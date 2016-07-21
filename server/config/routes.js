@@ -21,6 +21,7 @@ module.exports = function (app, express) {
   router.post('/skatespot/comment', SpotController.addComment);
 
 
+
   return router;
 };
 
