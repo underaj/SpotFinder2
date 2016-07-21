@@ -108,7 +108,6 @@ export default class App extends React.Component {
   }
 
   clickNav(modeNum){
-    console.log(this.state);
     this.setState({
       mode: modeNum,
       currentSpot: undefined,
@@ -148,7 +147,7 @@ export default class App extends React.Component {
     
     return (
       <div className='row'>
-        <Nav clickNav={this.clickNav.bind(this)} />
+        <Nav clickNav={this.clickNav.bind(this)} user={this.state.user.username}/>
         {ourMap}
         {sidePanel}
       </div>

@@ -14,3 +14,7 @@
 .hidden {
   visibility: hidden;
 }
+
+.greeting {
+	text-align: right;
+}
