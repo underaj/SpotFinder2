@@ -19,7 +19,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: undefined,
+      user: {username: 'anonymous'},
+      userLocation: {lat:0, lng:0},
       skateSpots: dummyData,
       currentSpot: undefined,
       sidebarDisplayed: false,
@@ -45,12 +46,14 @@ export default class App extends React.Component {
 
   getGeo() {
     this.props.getGeo((position) => {
-      console.log(position);
+      var location = position.coords;
+      this.setState({
+        userLocation: {lat: location.latitude, lng: location.longitude}
+      });
     });
   }
 
   changeCurrentSpot(spot, sidebar) {
-    console.log('changecurrentspot', spot);
     if (spot && sidebar) {
       this.setState({
         currentSpot: spot,
@@ -73,7 +76,6 @@ export default class App extends React.Component {
   signin(userObj) {
     this.props.apiPost('/api/users/signin', userObj)
       .then((data) => {
-        console.log(data);
         this.getUserDetail();
       });
   }
@@ -81,28 +83,26 @@ export default class App extends React.Component {
   signup(userObj) {
     this.props.apiPost('/api/users/signup', userObj)
       .then((data) => {
-        console.log(data);
+        //console.log(data);
       });
   }
 
   getUserDetail() {
     this.props.apiGet('/api/users/userDetail', (userDetail) => {
-      console.log(userDetail);
       this.setState({
         user: userDetail 
       });
     });
   }
 
-  clickMe(){
+  clickMe() {
     this.setState({
       // sidebarDisplayed: false,
       currentSpot: undefined,
       signInPanel: true
     });
-    console.log('it tickles! ARRRRRGH!')
+    console.log('it tickles! ARRRRRGH!');
   }
-
 
   render() {
     // our map and sideBar component goes into the div below adjacent to the h1
@@ -122,7 +122,7 @@ export default class App extends React.Component {
                 </nav>
                 <div className='map-wrapper' style={mapStyle}>
                   <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                  currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
+                  currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                 </div>
                </div>;
       infoPanel = <div className='col-xs-4'>
@@ -140,7 +140,7 @@ export default class App extends React.Component {
                 </nav>
                 <div className='map-wrapper' style={mapStyle}>
                   <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                  currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
+                  currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                 </div>
                </div>;
       infoPanel = <div className='col-xs-4'>
@@ -158,7 +158,7 @@ export default class App extends React.Component {
                 </nav>
                   <div className='map-wrapper' style={mapStyle}>
                     <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                    currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} />
+                    currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                   </div>
                  </div>;
     }
