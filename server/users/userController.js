@@ -21,8 +21,15 @@ module.exports = {
             return console.error(err);
           }
           // console.log('saved to db ', user);
+          req.login(user, function(err) {
+            if (err) {
+              console.error('login error ', err);
+              res.sendStatus(404);
+            } else {
+              res.sendStatus(201);
+            }
+          });
           
-          res.sendStatus(201);
         });
       }
     });
@@ -33,7 +40,9 @@ module.exports = {
   },
 
   signOut: function(req, res) {
+    console.log('before ', req);
     req.logout();
+    console.log('after ', req);
     res.redirect('/');
   },
 

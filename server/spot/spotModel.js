@@ -16,6 +16,7 @@ var skateSpotSchema = mongoose.Schema({
   bust: String,
   checkin: [user]
 });
+
 var SkateSpot = mongoose.model('SkateSpot', skateSpotSchema);
 
 module.exports = SkateSpot;

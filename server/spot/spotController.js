@@ -6,6 +6,7 @@ module.exports = {
 		//TODO check if user is authorized via req.user
 		var skateSpot = req.body;
 		var newSkateSpot = new SkateSpot(skateSpot);
+
 		newSkateSpot.save(function(err, result) {
 			if (err) {
 				return console.error(err);
