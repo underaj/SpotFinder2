@@ -134,7 +134,7 @@ export default class App extends React.Component {
                 </div>
                </div>;
       signInPanel = <div className='col-xs-4'>
-      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode}/>
+      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation}/>
       </div>
                     
     } else {
