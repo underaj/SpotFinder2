@@ -16,35 +16,30 @@ export default class NewSpot extends React.Component {
   }
 
   handleSpotName(e) {
-    console.log(this.state, e.target.value);
     this.setState({
       spotName: e.target.value
     });
   }
 
   handleAddress(e) {
-    console.log(this.state, e.target.value);
     this.setState({
       address: e.target.value
     });
   }
 
   handleShortDesc(e) {
-    console.log(this.state, e.target.value);
     this.setState({
       shortDesc: e.target.value
     });
   }
 
   handleDetailedDesc(e) {
-    console.log(this.state, e.target.value);
     this.setState({
       detailedDesc: e.target.value
     });
   }
 
   handleBust(e) {
-    console.log(this.state, e.target.value);
     this.setState({
       bust: e.target.value
     });
@@ -53,7 +48,6 @@ export default class NewSpot extends React.Component {
   handleLocationButton(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log(this.state, e.target.value);
     this.setState({
       lat: this.props.userLocation.lat,
       lng: this.props.userLocation.lng
