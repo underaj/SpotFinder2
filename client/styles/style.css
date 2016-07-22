@@ -14,6 +14,10 @@ a {
   z-index: 1000;
 }
 
+.wrapper {
+  padding: 0px;
+}
+
 .map-wrapper {
   width: auto;
 }
@@ -30,4 +34,27 @@ a {
 	text-align: right;
 }
 
+/*Info Panel*/
+
+.side-wrapper {
+  padding: 0px;
+}
+
+.form-control {
+  margin-right: 20px;
+}
+
+.comment-username {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.comment-div {
+  border-top: 2px solid #e1e8ed;
+  margin-bottom: 4px;
+}
+
+.comment-image {
+  border-right: 6px solid yellow;
+}
 

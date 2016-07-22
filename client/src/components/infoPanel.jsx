@@ -46,11 +46,13 @@ export default class InfoPanel extends React.Component {
 
   render() {
     var checkin;
-    var checkedIn = false;
+    var checkinHeader;
     var checkedInUser;
     var postedComment;
+    var checkedIn = false;
     
     if (this.props.currentSpot.checkin.length > 0) {
+      checkinHeader = <p>Skaters currently at this spot!</p>;
       checkedInUser = this.props.currentSpot.checkin.map((user) => {
         if (user._id === this.props.user._id) {
           checkedIn = true;
@@ -58,13 +60,15 @@ export default class InfoPanel extends React.Component {
 
         return (<p>{user.username}</p>);
       });
+    } else {
+      checkinHeader = <p>THE AREA IS CLEAR!!!</p>;
     }
 
     if (this.props.user._id && checkedIn === false) {
       if (this.state.userWithinDistance === false) {
-        checkin = <p>User is too far away from spot to check in</p>;
+        checkin = <p>You are too far away.</p>;
       } else {
-        checkin = <button onClick={ () => this.checkin() }>Check In</button>;
+        checkin = <button className="btn" onClick={ () => this.checkin() }>Check In</button>;
       }
     }
 
@@ -78,15 +82,16 @@ export default class InfoPanel extends React.Component {
               <p>The skinny: {this.props.currentSpot.shortDescription}</p>
               <p>The fat: {this.props.currentSpot.detailedDescription}</p>
               <p>Bust? : {this.props.currentSpot.bust}</p>
-              <p>Users checked in:</p>
+              {checkinHeader}
               {checkedInUser}
               {checkin}
-              <label>Comments</label>
-              <p>Comments</p>
-              {this.props.currentSpot.comments.map((comment)=>
-                <p>{comment.username} : {comment.comment}</p>
-              )}
-              <label>Add Comment</label>
+              <p><label>Comments</label></p>
+              {this.props.currentSpot.comments.map((comment)=> {
+                return (<div className="comment-div">
+                          <img src="img/skateboarder.png" alt="User Image" height="90" width="120" className="comment-image"/>
+                          <span className="comment-username">{comment.username}</span> : {comment.comment}
+                        </div>);
+              })}
               <form onSubmit={this.postComment.bind(this)}>
                 <div className="form-group">
                     <label className="sr-only" >Detailed description</label>
