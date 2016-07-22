@@ -29,6 +29,7 @@ export default class App extends React.Component {
       currentSpot: undefined,
       infoPanel: false,
       signInPanel: false,
+      //mode to keep track of what panel to render
       mode: 0,
       center: {lat: 37.75, lng: -122.44},
       zoom: 13
@@ -98,8 +99,18 @@ export default class App extends React.Component {
   signup(userObj) {
     this.props.apiPost('/api/users/signup', userObj)
       .then((data) => {
-        //console.log(data);
-        this.getUserDetail();
+        if (data === userObj.username) {
+          this.setState({
+            user: {username: null}
+          }).then(() => {
+            this.getUserDetail();
+          });
+        } else {
+          this.setState({
+              signInPanel: false
+            });
+          this.getUserDetail();
+        }
       });
   }
 
@@ -163,7 +174,7 @@ export default class App extends React.Component {
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots} getSkateSpots={this.getSkateSpots.bind(this)}/>
+                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} user={this.state.user.username} skateSpots={this.state.skateSpots}/>
                     </div>
       }
     } else {

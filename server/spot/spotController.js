@@ -2,8 +2,6 @@ var SkateSpot = require('./spotModel.js');
 
 module.exports = {
 	saveSkateSpot: function(req, res) {
-		//will need to add the pre-save option later
-		//TODO check if user is authorized via req.user
 		var skateSpot = req.body;
 		var newSkateSpot = new SkateSpot(skateSpot);
 
@@ -57,10 +55,10 @@ module.exports = {
   			skatespot.update({ "$addToSet": {comments: {username: req.body.username, comment: req.body.newComment} } }, function(err, result) {
   				if (err) {
   					console.error(err);
-  					res.send(404);
+  					res.sendStatus(404);
   				} else {
-            // res.redirect('/api/skatespot/getOne?_id=' + req.body.locationId);
-            res.send(201);  					
+
+            res.sendStatus(201);  					
 	  			}
   			});
   		}
