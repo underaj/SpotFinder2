@@ -47,17 +47,15 @@ export default class App extends React.Component {
         skateSpots.forEach( (skateSpot) => {
           if (skateSpot._id === this.state.currentSpot._id) {
             this.setState({
-              currentSpot: skateSpot,
-              skatespots: skateSpots
+              currentSpot: skateSpot
             });
           }
-          console.log(this.state.currentSpot);
-        });
-      } else {
-        this.setState({
-          skateSpots: skateSpots
         });
       }
+      
+      this.setState({
+        skateSpots: skateSpots
+      });
     });
   }
 
@@ -123,15 +121,14 @@ export default class App extends React.Component {
 
   checkIn(checkinObj) {
     this.props.apiPost('/api/skatespot/checkin', checkinObj)
-      .then((data) => {
+      .done((data) => {
         this.getSkateSpots();
       });
   }
 
   postComment(commentObj) {
     this.props.apiPost('/api/skatespot/comment', commentObj)
-    .then((data) => {
-      console.log(data);
+    .done((data) => {
       this.getSkateSpots();
     });
   }
