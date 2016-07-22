@@ -1,5 +1,5 @@
 import React from 'react';
-import { skateSpotHoverStyle, skateSpotStyle } from './skateSpotStyle.js';
+import { skateSpotHoverStyle, skateSpotStyle , outerDivStyle} from './skateSpotStyle.js';
 import Tooltip from './tooltip.jsx';
 
 export default class SkateSpot extends React.Component {
@@ -17,10 +17,13 @@ export default class SkateSpot extends React.Component {
     var toolTip = this.props.$hover ? <Tooltip skateSpotData={this.props.skateSpotData} /> : '';
 
     return (
+      <div style={outerDivStyle}>
       <div style={style} onClick={ ()=> { this.spotOnClick() } }>
         {this.props.skateSpotData.icon}
         {toolTip}
       </div>
+      </div>
+      
     );  
   }
 }
