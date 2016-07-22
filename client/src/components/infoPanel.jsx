@@ -35,9 +35,12 @@ export default class InfoPanel extends React.Component {
     e.preventDefault();
     if (this.state.username === 'anonymous' || this.state.newComment.length < 1) {
       console.log('nope');
-      //TODO tell user to login in
+      //done- tell user to login in
     } else {
       this.props.postComment(this.state);
+      this.setState({
+        newComment: ''
+      });
     }
   }
 
@@ -45,6 +48,8 @@ export default class InfoPanel extends React.Component {
     var checkin;
     var checkedIn = false;
     var checkedInUser;
+    var postedComment;
+    
     if (this.props.currentSpot.checkin.length > 0) {
       checkedInUser = this.props.currentSpot.checkin.map((user) => {
         if (user._id === this.props.user._id) {
@@ -61,6 +66,10 @@ export default class InfoPanel extends React.Component {
       } else {
         checkin = <button onClick={ () => this.checkin() }>Check In</button>;
       }
+    }
+
+    if (!this.props.user._id && this.state.newComment.length > 0) {
+      postedComment = <p>User has to be signed in to leave comments</p>;
     }
 
     return (<div className='infoPanel'>
@@ -86,6 +95,7 @@ export default class InfoPanel extends React.Component {
                 </div>
                 <button className="btn" >Send</button>
               </form>
+              {postedComment}
             </div>);
   }
 }

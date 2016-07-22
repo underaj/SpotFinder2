@@ -21,7 +21,8 @@ export default class SignUp extends React.Component {
     });
   }
 
-  clickSignUp() {
+  clickSignUp(e) {
+    e.preventDefault();
     this.props.signup(this.state);
     this.setState({
       username: '',
@@ -30,11 +31,19 @@ export default class SignUp extends React.Component {
   }
 
   render() {
+    var usernameTaken;
+    
+    if (this.props.user === null) {
+      usernameTaken = <p>Username is already taken</p>;
+    }
     return (
       <div>
-        <input className='name-input' value={this.state.username} onChange={this.handleUsername.bind(this)} />
-        <input type='password' className='name-input' value={this.state.password} onChange={this.handlePassword.bind(this)} />
-        <button className='btn' onClick={this.clickSignUp.bind(this)} >Sign Up</button>
+        <form onSubmit={this.clickSignUp.bind(this)}>
+          <input className='name-input' value={this.state.username} onChange={this.handleUsername.bind(this)} />
+          <input type='password' className='name-input' value={this.state.password} onChange={this.handlePassword.bind(this)} />
+          <button className='btn' >Sign Up</button>
+        </form>
+        {usernameTaken}
       </div>
     );  
   }

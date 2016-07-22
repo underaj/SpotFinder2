@@ -9,8 +9,8 @@ module.exports = {
         return console.error(err);
       }
       if (result) {
-        // console.log('username taken, choose another');
-        res.redirect('/');
+        console.log('userController', result.username);
+        res.json(result.username);
       }
       else {
         console.log('req body ', req.body);

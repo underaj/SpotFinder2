@@ -98,8 +98,15 @@ export default class App extends React.Component {
   signup(userObj) {
     this.props.apiPost('/api/users/signup', userObj)
       .then((data) => {
-        //console.log(data);
-        this.getUserDetail();
+        if (data === userObj.username) {
+          console.log('username taken', data);
+          this.setState({
+            user: {username: null}
+          });
+          console.log(this.state.user.username);
+        } else {
+          this.getUserDetail();
+        }
       });
   }
 

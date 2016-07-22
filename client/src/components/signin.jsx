@@ -32,9 +32,11 @@ export default class SignIn extends React.Component {
   render() {
     return (
       <div>
-        <input className='name-input' value={this.state.username} onChange={this.handleUsername.bind(this)} />
-        <input type='password' className='password-input' value={this.state.password} onChange={this.handlePassword.bind(this)} />
-        <button className='btn' onClick={this.clickSignIn.bind(this)}>Sign In</button>
+        <form onSubmit={this.clickSignIn.bind(this)}>
+          <input className='name-input' value={this.state.username} onChange={this.handleUsername.bind(this)} />
+          <input type='password' className='password-input' value={this.state.password} onChange={this.handlePassword.bind(this)} />
+          <button className='btn'>Sign In</button>
+        </form>
       </div>
     );  
   }

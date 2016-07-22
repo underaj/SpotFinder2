@@ -91,7 +91,7 @@ export default class NewSpot extends React.Component {
 	render() {
   	return (
   		<div>
-    		<form>
+    		<form onSubmit={this.handleAddSpot.bind(this)}>
     		    <div className="form-group">
     		        <label className="sr-only">Spot name</label>
     		        <input type="text" placeholder="Spot Name" className="form-control" id="spotName" value={this.state.name} onChange={this.handleSpotName.bind(this)} />
@@ -113,9 +113,8 @@ export default class NewSpot extends React.Component {
     		        <input type="text" name="subject" placeholder="bust" className="form-control" id="bust" value={this.state.bust} onChange={this.handleBust.bind(this)}/>
     		    </div>
             <p className={this.state.visibility}>There is already a post for this location.</p>
-            <button className="btn" onClick={this.handleLocationButton.bind(this)}>Use my location</button>
             <p></p>
-    		    <button className="btn" onClick={this.handleAddSpot.bind(this)}>Add spot</button>
+    		    <button className="btn">Add spot</button>
     		</form>
   		</div>
 		);
