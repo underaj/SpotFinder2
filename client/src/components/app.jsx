@@ -51,6 +51,7 @@ export default class App extends React.Component {
               skatespots: skateSpots
             });
           }
+          console.log(this.state.currentSpot);
         });
       } else {
         this.setState({
@@ -69,13 +70,8 @@ export default class App extends React.Component {
     });
   }
 
-<<<<<<< HEAD
   changeCurrentSpot(spot) {
     if (spot) {
-=======
-  changeCurrentSpot(spot, sidebar) {
-    if (spot && sidebar) {
->>>>>>> (feat) show user spot on map
       this.setState({
         currentSpot: spot,
         center: {lat: spot.lat, lng: spot.lng + 0.04},
@@ -170,7 +166,7 @@ export default class App extends React.Component {
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots}/>
+                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots} getSkateSpots={this.getSkateSpots.bind(this)}/>
                     </div>
       }
     } else {
