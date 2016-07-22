@@ -24,16 +24,19 @@ export default class SignUp extends React.Component {
   clickSignUp(e) {
     e.preventDefault();
     this.props.signup(this.state);
-    this.setState({
-      username: '',
-      password: ''
-    });
+    if (this.props.user !== null) {
+      this.setState({
+        username: '',
+        password: ''
+      });
+    }
   }
 
   render() {
     var usernameTaken;
     
     if (this.props.user === null) {
+      console.log('made it here');
       usernameTaken = <p>Username is already taken</p>;
     }
     return (
@@ -42,8 +45,8 @@ export default class SignUp extends React.Component {
           <input className='name-input' value={this.state.username} onChange={this.handleUsername.bind(this)} />
           <input type='password' className='name-input' value={this.state.password} onChange={this.handlePassword.bind(this)} />
           <button className='btn' >Sign Up</button>
+          {usernameTaken}
         </form>
-        {usernameTaken}
       </div>
     );  
   }

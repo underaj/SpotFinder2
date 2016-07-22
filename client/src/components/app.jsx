@@ -99,11 +99,9 @@ export default class App extends React.Component {
     this.props.apiPost('/api/users/signup', userObj)
       .then((data) => {
         if (data === userObj.username) {
-          console.log('username taken', data);
           this.setState({
             user: {username: null}
           });
-          console.log(this.state.user.username);
         } else {
           this.getUserDetail();
         }
@@ -170,7 +168,7 @@ export default class App extends React.Component {
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots} getSkateSpots={this.getSkateSpots.bind(this)}/>
+                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} user={this.state.user.username} skateSpots={this.state.skateSpots}/>
                     </div>
       }
     } else {

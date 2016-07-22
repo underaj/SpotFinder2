@@ -18,7 +18,7 @@ export const SignInPanel = (props) => {
 	if (props.mode === 1) {
 		signIn = <div>
       Sign Up
-		  <SignUp signup={props.signup} />
+		  <SignUp signup={props.signup} user={props.user}/>
 		  </div>
 	}
   if (props.mode === 3) {

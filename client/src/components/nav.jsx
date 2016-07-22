@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Nav = (props) => {
 
-  if (props.user !== "anonymous"){
+  if (props.user !== "anonymous" && props.user !== null){
     return (
       <nav className="navbar navbar-default">
         <div className="container">
