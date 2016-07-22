@@ -29,6 +29,7 @@ export default class App extends React.Component {
       currentSpot: undefined,
       infoPanel: false,
       signInPanel: false,
+      //mode to keep track of what panel to render
       mode: 0,
       center: {lat: 37.75, lng: -122.44},
       zoom: 13
