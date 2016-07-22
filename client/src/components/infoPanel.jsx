@@ -52,7 +52,7 @@ export default class InfoPanel extends React.Component {
     var checkedInUser;
     var postedComment;
     var checkedIn = false;
-    
+
     if (this.props.currentSpot.checkin.length > 0) {
       checkinHeader = <p>Skaters currently at this spot!</p>;
       checkedInUser = this.props.currentSpot.checkin.map((user) => {
@@ -63,7 +63,7 @@ export default class InfoPanel extends React.Component {
         return (<p>{user.username}</p>);
       });
     } else {
-      checkinHeader = <p>THE AREA IS CLEAR!!!</p>;
+      checkinHeader = <p>Wanna check in at the spot?</p>;
     }
 
     if (this.props.user._id && checkedIn === false) {
@@ -80,18 +80,24 @@ export default class InfoPanel extends React.Component {
 
     return (<div className='infoPanel'>
               <h3 className='display'>{this.props.currentSpot.name}</h3>
+              <p className="bold-italic">Address:</p>
               <p>{this.props.currentSpot.address}</p>
-              <p>The skinny: {this.props.currentSpot.shortDescription}</p>
-              <p>The fat: {this.props.currentSpot.detailedDescription}</p>
-              <p>Bust? : {this.props.currentSpot.bust}</p>
+              <p className="bold-italic">Description:</p>
+              <p>{this.props.currentSpot.detailedDescription}</p>
+              <p><span className="bold-italic">Bust?</span> : {this.props.currentSpot.bust}</p>
               {checkinHeader}
               {checkedInUser}
               {checkin}
               <p><label>Comments</label></p>
               {this.props.currentSpot.comments.map((comment)=> {
                 return (<div className="comment-div">
-                          <img src="img/skateboarder.png" alt="User Image" height="90" width="120" className="comment-image"/>
-                          <span className="comment-username">{comment.username}</span> : {comment.comment}
+                          <span className="img-span">
+                            <img src="img/skateboarder.png" alt="User Image" height="90" width="120" className="comment-image"/>
+                          </span>
+                          <span className="comment-span">
+                            <p className="bold-italic">{comment.username} :</p> 
+                            <p>{comment.comment}</p>
+                          </span>
                         </div>);
               })}
               <form onSubmit={this.postComment.bind(this)}>
@@ -100,7 +106,7 @@ export default class InfoPanel extends React.Component {
                     <textarea type="text" placeholder='Leave a Comment' value={this.state.newComment} 
                     onChange={this.handleComment.bind(this)} className="form-control" ></textarea>
                 </div>
-                <button className="btn" >Send</button>
+                <button className="btn btn-success send-button" >Send</button>
               </form>
               {postedComment}
             </div>);
