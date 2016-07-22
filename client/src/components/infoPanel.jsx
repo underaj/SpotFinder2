@@ -9,7 +9,7 @@ export default class InfoPanel extends React.Component {
     this.state = {
       newComment : '',
       username: this.props.user.username,
-      locationId: this.props.skateData._id,
+      locationId: this.props.currentSpot._id,
       userWithinDistance: undefined
     };
   } 
