@@ -18,10 +18,9 @@ export default class SkateSpot extends React.Component {
 
     return (
       <div style={outerDivStyle}>
-      <div style={style} onClick={ ()=> { this.spotOnClick() } }>
-        {this.props.skateSpotData.icon}
+        <div style={style} onClick={ ()=> { this.spotOnClick() } }>
+        </div>
         {toolTip}
-      </div>
       </div>
       
     );  

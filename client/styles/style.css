@@ -3,8 +3,15 @@ a {
 }
 
 .tooltip-wrapper {
-  background-color: 'grey';
+  position: relative;
+  background-color: grey;
   width: 100px;
+  left: 10px;
+  height: auto;
+  font-size: 14px;
+  border-radius: 15%;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 .map-wrapper {

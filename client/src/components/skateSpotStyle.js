@@ -1,4 +1,4 @@
-export const e_size = 20;
+export const e_size = 30;
 
 export const skateSpotStyle = {
   position: 'absolute',
@@ -39,7 +39,7 @@ export const skateSpotHoverStyle = {
 };
 
 export const outerDivStyle = {
-    position: 'absolute',
+  position: 'absolute',
   width: e_size,
   height: e_size,
   // left: -e_size / 2,
