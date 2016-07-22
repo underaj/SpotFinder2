@@ -33,6 +33,8 @@ export default class InfoPanel extends React.Component {
 
   postComment(e) {
     e.preventDefault();
+    var message = this.state;
+    message.locationId = this.props.currentSpot._id;
     if (this.state.username === 'anonymous' || this.state.newComment.length < 1) {
       console.log('nope');
       //done- tell user to login in
