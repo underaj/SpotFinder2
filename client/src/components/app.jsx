@@ -101,8 +101,13 @@ export default class App extends React.Component {
         if (data === userObj.username) {
           this.setState({
             user: {username: null}
+          }).then(() => {
+            this.getUserDetail();
           });
         } else {
+          this.setState({
+              signInPanel: false
+            });
           this.getUserDetail();
         }
       });

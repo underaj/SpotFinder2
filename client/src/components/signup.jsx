@@ -24,21 +24,20 @@ export default class SignUp extends React.Component {
   clickSignUp(e) {
     e.preventDefault();
     this.props.signup(this.state);
-    if (this.props.user !== null) {
-      this.setState({
-        username: '',
-        password: ''
-      });
-    }
+    console.log(this.props.user);
+    this.setState({
+      username: '',
+      password: ''
+    });
   }
 
   render() {
     var usernameTaken;
     
     if (this.props.user === null) {
-      console.log('made it here');
       usernameTaken = <p>Username is already taken</p>;
     }
+
     return (
       <div>
         <form onSubmit={this.clickSignUp.bind(this)}>
