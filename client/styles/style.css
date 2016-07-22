@@ -4,7 +4,7 @@ a {
 
 .tooltip-wrapper {
   position: relative;
-  background-color: grey;
+  background-color: lightgrey;
   width: 100px;
   left: 10px;
   height: auto;
@@ -12,6 +12,9 @@ a {
   border-radius: 15%;
   font-weight: bold;
   z-index: 1000;
+}
+.tooltip-wrapper:hover {
+  background-image: yellow;
 }
 
 .map-wrapper {
