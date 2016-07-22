@@ -3,7 +3,7 @@ a {
 }
 
 .tooltip-wrapper {
-  background-color: black;
+  background-color: 'grey';
   width: 100px;
 }
 
@@ -22,3 +22,5 @@ a {
 .greeting {
 	text-align: right;
 }
+
+
