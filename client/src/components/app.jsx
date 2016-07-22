@@ -165,26 +165,26 @@ export default class App extends React.Component {
                     </div>
 
     if (this.state.signInPanel || this.state.infoPanel) {
-      ourMap = <div className='col-xs-8'>
+      ourMap = <div className='col-xs-8 wrapper'>
                 {googleMap}
                </div>;
       if (this.state.infoPanel) {
-        sidePanel = <div className='col-xs-4'>
+        sidePanel = <div className='col-xs-4 side-wrapper'>
                       <InfoPanel currentSpot={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)}  postComment={this.postComment.bind(this)}/>  
                     </div>;
       } else if (this.state.signInPanel) {
-        sidePanel = <div className='col-xs-4'>
-                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} user={this.state.user.username} skateSpots={this.state.skateSpots}/>
+        sidePanel = <div className='col-xs-4 side-wrapper'>
+                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} user={this.state.user.username} skateSpots={this.state.skateSpots} getSkateSpots={this.getSkateSpots.bind(this)}/>
                     </div>
       }
     } else {
-        ourMap = <div className='col-xs-12'>
+        ourMap = <div className='col-xs-12 wrapper'>
                   {googleMap}
                  </div>;
     }
     
     return (
-      <div className='row'>
+      <div>
         <Nav clickNav={this.clickNav.bind(this)} user={this.state.user.username} signout={this.signout.bind(this)}/>
         {ourMap}
         {sidePanel}
