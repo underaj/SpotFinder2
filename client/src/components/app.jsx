@@ -152,7 +152,7 @@ export default class App extends React.Component {
                </div>;
       if (this.state.infoPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <InfoPanel skateSpotData={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)} />
+                      <InfoPanel currentSpot={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)} />
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>

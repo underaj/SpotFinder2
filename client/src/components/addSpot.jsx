@@ -13,7 +13,7 @@ export default class NewSpot extends React.Component {
       detailedDescription: '',
       bust: '',
       visibility: 'hidden'
-    }
+    };
   }
 
   handleSpotName(e) {
@@ -87,33 +87,33 @@ export default class NewSpot extends React.Component {
 	render() {
   	return (
   		<div>
-  		<form>
-  		    <div className="form-group">
-  		        <label className="sr-only">Spot name</label>
-  		        <input type="text" placeholder="Spot Name" className="form-control" id="spotName" value={this.state.name} onChange={this.handleSpotName.bind(this)} />
-  		    </div>
-  		    <div className="form-group">
-  		        <label className="sr-only">Address</label>
-  		        <input type="text" name="subject" placeholder="address" className="form-control" id="address" value={this.state.address} onChange={this.handleAddress.bind(this)} />
-  		    </div>
-  		    <div className="form-group">
-  		        <label className="sr-only">Short description</label>
-  		        <input type="text" name="subject" placeholder="Short description" className="form-control" id="short" value={this.state.shortDescription} onChange={this.handleShortDesc.bind(this)} />
-  		    </div>
-  		    <div className="form-group">
-  		        <label className="sr-only" >Detailed description</label>
-  		        <textarea type="text" name="message" placeholder="Detailed description : Whats there? Is the ground good?" className="form-control" id="detailed" value={this.state.detailedDescription} onChange={this.handleDetailedDesc.bind(this)}></textarea>
-  		    </div>
-  		    <div className="form-group">
-  		        <label className="sr-only">Bust</label>
-  		        <input type="text" name="subject" placeholder="bust" className="form-control" id="bust" value={this.state.bust} onChange={this.handleBust.bind(this)}/>
-  		    </div>
-          <p className={this.state.visibility}>There is already a post for this location.</p>
-          <button className="btn" onClick={this.handleLocationButton.bind(this)}>Use my location</button>
-          <p></p>
-  		    <button className="btn" onClick={this.handleAddSpot.bind(this)}>Add spot</button>
-  		</form>
+    		<form>
+    		    <div className="form-group">
+    		        <label className="sr-only">Spot name</label>
+    		        <input type="text" placeholder="Spot Name" className="form-control" id="spotName" value={this.state.name} onChange={this.handleSpotName.bind(this)} />
+    		    </div>
+    		    <div className="form-group">
+    		        <label className="sr-only">Address</label>
+    		        <input type="text" name="subject" placeholder="address" className="form-control" id="address" value={this.state.address} onChange={this.handleAddress.bind(this)} />
+    		    </div>
+    		    <div className="form-group">
+    		        <label className="sr-only">Short description</label>
+    		        <input type="text" name="subject" placeholder="Short description" className="form-control" id="short" value={this.state.shortDescription} onChange={this.handleShortDesc.bind(this)} />
+    		    </div>
+    		    <div className="form-group">
+    		        <label className="sr-only" >Detailed description</label>
+    		        <textarea type="text" name="message" placeholder="Detailed description : Whats there? Is the ground good?" className="form-control" id="detailed" value={this.state.detailedDescription} onChange={this.handleDetailedDesc.bind(this)}></textarea>
+    		    </div>
+    		    <div className="form-group">
+    		        <label className="sr-only">Bust</label>
+    		        <input type="text" name="subject" placeholder="bust" className="form-control" id="bust" value={this.state.bust} onChange={this.handleBust.bind(this)}/>
+    		    </div>
+            <p className={this.state.visibility}>There is already a post for this location.</p>
+            <button className="btn" onClick={this.handleLocationButton.bind(this)}>Use my location</button>
+            <p></p>
+    		    <button className="btn" onClick={this.handleAddSpot.bind(this)}>Add spot</button>
+    		</form>
   		</div>
-  		);
+		);
 	}
 };

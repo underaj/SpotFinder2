@@ -12,9 +12,9 @@ export class InfoPanel extends React.Component {
   }
 
   checkin() {
-    var distance = haversineDistance({lat: this.props.skateSpotData.lat, lng: this.props.skateSpotData.lng}, this.props.userLocation);
+    var distance = haversineDistance({lat: this.props.currentSpot.lat, lng: this.props.currentSpot.lng}, this.props.userLocation);
     if (distance < 0.5) {
-      this.props.checkIn({locationId: this.props.skateSpotData._id});    
+      this.props.checkIn({locationId: this.props.currentSpot._id});    
     } else {
       this.setState({
         userWithinDistance: false
@@ -27,8 +27,8 @@ export class InfoPanel extends React.Component {
     var checkedIn = false;
     var checkedInUser;
 
-    if (this.props.skateSpotData.checkin.length > 0) {
-      checkedInUser = this.props.skateSpotData.checkin.map((user) => {
+    if (this.props.currentSpot.checkin.length > 0) {
+      checkedInUser = this.props.currentSpot.checkin.map((user) => {
         if (user._id === this.props.user._id) {
           checkedIn = true;
         }
@@ -46,11 +46,11 @@ export class InfoPanel extends React.Component {
     }
 
     return (<div className='infoPanel'>
-              <h3 className='display'>{this.props.skateSpotData.name}</h3>
-              <p>{this.props.skateSpotData.address}</p>
-              <p>The skinny: {this.props.skateSpotData.shortDescription}</p>
-              <p>The fat: {this.props.skateSpotData.detailedDescription}</p>
-              <p>Bust? : {this.props.skateSpotData.bust}</p>
+              <h3 className='display'>{this.props.currentSpot.name}</h3>
+              <p>{this.props.currentSpot.address}</p>
+              <p>The skinny: {this.props.currentSpot.shortDescription}</p>
+              <p>The fat: {this.props.currentSpot.detailedDescription}</p>
+              <p>Bust? : {this.props.currentSpot.bust}</p>
               <p>Users checked in:</p>
               {checkedInUser}
               {checkin}
