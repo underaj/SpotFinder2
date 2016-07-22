@@ -6,13 +6,13 @@ import {Nav} from './nav.jsx';
 
 const dummyData = [
   {
-    name: 'DOOP DOOP',
-    icon: 'hi AJ',
-    lat:37.77397,
-    lng: -122.43129,
-    address: '1st street',
-    shortDescription: 'this spot is rad',
-    detailedDescription: 'BLA BLA BLA SOOOO GOOOOOOD',
+    name: '',
+    icon: '',
+    lat: 0,
+    lng: 0,
+    address: '',
+    shortDescription: '',
+    detailedDescription: '',
     bust: 'hello hello',
     checkin: []
   }
@@ -27,10 +27,10 @@ export default class App extends React.Component {
       skateSpots: dummyData,
       currentSpot: undefined,
       infoPanel: false,
-      center: {lat: 37.75, lng: -122.44},
-      zoom: 13,
       signInPanel: false,
-      mode: 0
+      mode: 0,
+      center: {lat: 37.75, lng: -122.44},
+      zoom: 13
     };
   }
 
@@ -42,9 +42,20 @@ export default class App extends React.Component {
 
   getSkateSpots() {
     this.props.apiGet('/api/skateSpots', (skateSpots) => {
-      this.setState({
-        skateSpots: skateSpots
-      });
+      if (this.state.currentSpot) {
+        skateSpots.forEach( (skateSpot) => {
+          if (skateSpot._id === this.state.currentSpot._id) {
+            this.setState({
+              currentSpot: skateSpot,
+              skatespots: skateSpots
+            });
+          }
+        });
+      } else {
+        this.setState({
+          skateSpots: skateSpots
+        });
+      }
     });
   }
 
@@ -58,7 +69,6 @@ export default class App extends React.Component {
   }
 
   changeCurrentSpot(spot) {
-    console.log(spot);
     if (spot) {
       this.setState({
         currentSpot: spot,
@@ -112,7 +122,7 @@ export default class App extends React.Component {
   checkIn(checkinObj) {
     this.props.apiPost('/api/skatespot/checkin', checkinObj)
       .then((data) => {
-        console.log(data);
+        this.getSkateSpots();
       });
   }
 
@@ -135,18 +145,19 @@ export default class App extends React.Component {
                       <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                       currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                     </div>
+
     if (this.state.signInPanel || this.state.infoPanel) {
       ourMap = <div className='col-xs-8'>
                 {googleMap}
                </div>;
       if (this.state.infoPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <InfoPanel skateData={this.state.currentSpot} user={this.state.user} checkIn={this.checkIn.bind(this)} />
+                      <InfoPanel skateSpotData={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)} />
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>
-                        <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots}/>
-                      </div>
+                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots}/>
+                    </div>
       }
     } else {
         ourMap = <div className='col-xs-12'>

@@ -22,7 +22,7 @@ export default class SignUp extends React.Component {
   }
 
   clickSignUp() {
-    this.props.signup(this.state)
+    this.props.signup(this.state);
     this.setState({
       username: '',
       password: ''
