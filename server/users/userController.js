@@ -40,9 +40,7 @@ module.exports = {
   },
 
   signOut: function(req, res) {
-    console.log('before ', req);
     req.logout();
-    console.log('after ', req);
     res.redirect('/');
   },
 

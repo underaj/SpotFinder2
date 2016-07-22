@@ -10,7 +10,8 @@ module.exports = function() {
       address: '1st street',
       shortDescription: 'this spot is rad',
       detailedDescription: 'BLA BLA BLA SOOOO GOOOOOOD',
-      bust: 'hello hello'
+      bust: 'hello hello',
+      comments: [{username: "theClown", comment: 'wacka wacka'}, {username: "theClown", comment: 'wacka wacka'}]
     },
     { 
       name: 'WOOP WOOP',
@@ -20,7 +21,8 @@ module.exports = function() {
       address: '2nd street',
       shortDescription: 'this spot is rad',
       detailedDescription: 'BLA BLA BLA SOOOO GOOOOOOD',
-      bust: 'hello hello'
+      bust: 'hello hello',
+      comments: [{username: "theClown", comment: 'wacka wacka'}, {username: "theClown", comment: 'wacka wacka'}]
     },
     {
       name: 'CHOOP CHOOP',
@@ -30,7 +32,8 @@ module.exports = function() {
       address: '3rd street',
       shortDescription: 'this spot is rad',
       detailedDescription: 'BLA BLA BLA SOOOO GOOOOOOD',
-      bust: 'hello hello'
+      bust: 'hello hello',
+      comments: [{username: "theClown", comment: 'wacka wacka'}, {username: "theClown", comment: 'wacka wacka'}]
     }
   ];
 
