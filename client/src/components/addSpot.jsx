@@ -90,7 +90,7 @@ export default class NewSpot extends React.Component {
 
 	render() {
   	return (
-  		<div>
+  		<div className='sidePanel'>
     		<form onSubmit={this.handleAddSpot.bind(this)}>
     		    <div className="form-group">
     		        <label className="sr-only">Spot name</label>

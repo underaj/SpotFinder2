@@ -31,10 +31,14 @@ export default class SignIn extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='sidePanel'>
         <form onSubmit={this.clickSignIn.bind(this)}>
-          <input className='name-input' value={this.state.username} onChange={this.handleUsername.bind(this)} />
-          <input type='password' className='password-input' value={this.state.password} onChange={this.handlePassword.bind(this)} />
+        <div className='form-group'>
+          <input className='form-control' placeholder='Username' value={this.state.username} onChange={this.handleUsername.bind(this)} />
+        </div>
+        <div className='form-group'>
+          <input type='password' className='form-control' placeholder='Password' value={this.state.password} onChange={this.handlePassword.bind(this)} />
+        </div>
           <button className='btn'>Sign In</button>
         </form>
       </div>
