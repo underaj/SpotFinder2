@@ -45,7 +45,6 @@ export default class InfoPanel extends React.Component {
     var checkin;
     var checkedIn = false;
     var checkedInUser;
-
     if (this.props.currentSpot.checkin.length > 0) {
       checkedInUser = this.props.currentSpot.checkin.map((user) => {
         if (user._id === this.props.user._id) {

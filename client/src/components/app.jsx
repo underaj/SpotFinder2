@@ -47,16 +47,15 @@ export default class App extends React.Component {
         skateSpots.forEach( (skateSpot) => {
           if (skateSpot._id === this.state.currentSpot._id) {
             this.setState({
-              currentSpot: skateSpot,
-              skatespots: skateSpots
+              currentSpot: skateSpot
             });
           }
         });
-      } else {
-        this.setState({
-          skateSpots: skateSpots
-        });
       }
+      
+      this.setState({
+        skateSpots: skateSpots
+      });
     });
   }
 
@@ -122,15 +121,14 @@ export default class App extends React.Component {
 
   checkIn(checkinObj) {
     this.props.apiPost('/api/skatespot/checkin', checkinObj)
-      .then((data) => {
+      .done((data) => {
         this.getSkateSpots();
       });
   }
 
   postComment(commentObj) {
     this.props.apiPost('/api/skatespot/comment', commentObj)
-    .then((data) => {
-      console.log(data);
+    .done((data) => {
       this.getSkateSpots();
     });
   }
@@ -165,7 +163,7 @@ export default class App extends React.Component {
                     </div>;
       } else if (this.state.signInPanel) {
         sidePanel = <div className='col-xs-4'>
-                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots}/>
+                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} skateSpots={this.state.skateSpots} getSkateSpots={this.getSkateSpots.bind(this)}/>
                     </div>
       }
     } else {

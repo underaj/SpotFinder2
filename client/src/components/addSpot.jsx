@@ -68,10 +68,14 @@ export default class NewSpot extends React.Component {
     if (conflict === true) {
       this.setState({
         visibility: 'visible'
-      })
+      });
       // TODO show some hidden element and let the client know they are too close to a current spot
     } else {
-        apiPost('/api/skatespots', this.state);
+        apiPost('/api/skatespots', this.state)
+          .done((data) => {
+            this.props.getSkateSpots();
+          });
+
         this.setState({
           name: '',
           address:'',
