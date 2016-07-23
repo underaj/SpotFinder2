@@ -58,3 +58,11 @@ a {
   border-right: 6px solid yellow;
 }
 
+h3 {
+  padding: 15px;
+  margin: 20px;
+}
+
+.sidePanel {
+  margin-top: 20px;
+}
