@@ -27,7 +27,7 @@ export const skateSpotHoverStyle = {
   top: -e_size / 2,
 
   borderRadius: e_size,
-  content: 'url(https://d30y9cdsu7xlg0.cloudfront.net/png/9626-200.png)',
+  content: 'url(http://i.imgur.com/foXmE7c.png)',
   // backgroundColor: 'white',
   textAlign: 'center',
   fontSize: 16,
@@ -44,4 +44,20 @@ export const outerDivStyle = {
   height: e_size,
   // left: -e_size / 2,
   // top: -e_size / 2,
-}
+};
+
+export const userSpotStyle = {
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  left: -e_size / 2,
+  top: -e_size / 2,
+
+  borderRadius: e_size,
+  content: 'url(http://i.imgur.com/Xs70rpU.png)',
+  textAlign: 'center',
+  fontSize: 16,
+  fontWeight: 'bold',
+  padding: 4,
+  cursor: 'pointer',
+};

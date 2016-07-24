@@ -1,5 +1,5 @@
 import React from 'react';
-import { skateSpotHoverStyle, skateSpotStyle } from './skateSpotStyle.js';
+import { userSpotStyle } from './skateSpotStyle.js';
 
 export default class UserSpot extends React.Component {
 
@@ -8,7 +8,8 @@ export default class UserSpot extends React.Component {
   }
   
   render() {
-    var style = this.props.$hover ? skateSpotHoverStyle : skateSpotStyle;
+
+    var style = userSpotStyle;
 
     return (
       <div style={style}>
