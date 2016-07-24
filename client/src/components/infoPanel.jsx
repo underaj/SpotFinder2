@@ -70,7 +70,7 @@ export default class InfoPanel extends React.Component {
       if (this.state.userWithinDistance === false) {
         checkin = <p>You are too far away.</p>;
       } else {
-        checkin = <button className="btn btn-success btn-sm" onClick={ () => this.checkin() }>Check In</button>;
+        checkin = <button className="btn btn-sm" onClick={ () => this.checkin() }>Check In</button>;
       }
     }
 
@@ -93,7 +93,9 @@ export default class InfoPanel extends React.Component {
                 {checkin}
               </div>
               <div className="bubble-div">
-                <p><label>Comments</label></p>
+                <div className="center-div">
+                  <h5>RECENT COMMENTS</h5>
+                </div>
                 {this.props.currentSpot.comments.map((comment)=> {
                   return (<div className="comment-div">
                             <span className="img-span">
@@ -111,7 +113,7 @@ export default class InfoPanel extends React.Component {
                       <textarea type="text" placeholder='Leave a Comment' value={this.state.newComment} 
                       onChange={this.handleComment.bind(this)} className="form-control" ></textarea>
                   </div>
-                  <button className="btn btn-success send-button" >Send</button>
+                  <button className="btn btn-sm send-button" >Send</button>
                 </form>
                 {postedComment}
               </div>
