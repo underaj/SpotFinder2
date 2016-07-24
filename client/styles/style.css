@@ -2,6 +2,14 @@ a {
   cursor: pointer;
 }
 
+p {
+  margin-bottom: 2px;
+}
+
+h3 {
+  margin: 5px 0 5px 0;
+}
+
 .tooltip-wrapper {
   position: relative;
   background-color: grey;
@@ -37,25 +45,46 @@ a {
 /*Info Panel*/
 
 .side-wrapper {
-  padding: 0px;
+  padding: 5px;
 }
 
-.form-control {
-  margin-right: 20px;
-}
-
-.comment-username {
-  font-weight: bold;
-  font-style: italic;
+.bubble-div {
+  border-radius: 15px;
+  border: 2px solid #DDDDDD;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
 }
 
 .comment-div {
-  border-top: 2px solid #e1e8ed;
-  margin-bottom: 4px;
+  border-top: 1px solid #e1e8ed;
 }
 
 .comment-image {
   border-right: 6px solid yellow;
+
+}
+
+.img-span {
+  display: inline-block;
+}
+
+.comment-span {
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.bold-italic {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.form-control {
+  margin-top: 8px;
+}
+
+.send-button {
+  margin-top: -10px;
 }
 
 h3 {
