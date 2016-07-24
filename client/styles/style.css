@@ -21,9 +21,6 @@ p {
   font-weight: bold;
   z-index: 1000;
 }
-.tooltip-wrapper:hover {
-  background-image: yellow;
-}
 
 .wrapper {
   padding: 0px;
