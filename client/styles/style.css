@@ -6,6 +6,10 @@ p {
   margin-bottom: 2px;
 }
 
+h3 {
+  margin: 5px 0 5px 0;
+}
+
 .tooltip-wrapper {
   position: relative;
   background-color: grey;
@@ -42,6 +46,14 @@ p {
 
 .side-wrapper {
   padding: 5px;
+}
+
+.bubble-div {
+  border-radius: 15px;
+  border: 2px solid #DDDDDD;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
 }
 
 .comment-div {

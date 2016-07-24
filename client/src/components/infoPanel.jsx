@@ -54,7 +54,7 @@ export default class InfoPanel extends React.Component {
     var checkedIn = false;
 
     if (this.props.currentSpot.checkin.length > 0) {
-      checkinHeader = <p>Skaters currently at this spot!</p>;
+      checkinHeader = <p className="bold-italic">Skaters currently at this spot!</p>;
       checkedInUser = this.props.currentSpot.checkin.map((user) => {
         if (user._id === this.props.user._id) {
           checkedIn = true;
@@ -63,14 +63,14 @@ export default class InfoPanel extends React.Component {
         return (<p>{user.username}</p>);
       });
     } else {
-      checkinHeader = <p>Wanna check in at the spot?</p>;
+      checkinHeader = <p className="bold-italic">Wanna check in at the spot?</p>;
     }
 
     if (this.props.user._id && checkedIn === false) {
       if (this.state.userWithinDistance === false) {
         checkin = <p>You are too far away.</p>;
       } else {
-        checkin = <button className="btn" onClick={ () => this.checkin() }>Check In</button>;
+        checkin = <button className="btn btn-success btn-sm" onClick={ () => this.checkin() }>Check In</button>;
       }
     }
 
@@ -79,36 +79,42 @@ export default class InfoPanel extends React.Component {
     }
 
     return (<div className='infoPanel'>
-              <h3 className='display'>{this.props.currentSpot.name}</h3>
-              <p className="bold-italic">Address:</p>
-              <p>{this.props.currentSpot.address}</p>
-              <p className="bold-italic">Description:</p>
-              <p>{this.props.currentSpot.detailedDescription}</p>
-              <p><span className="bold-italic">Bust?</span> : {this.props.currentSpot.bust}</p>
-              {checkinHeader}
-              {checkedInUser}
-              {checkin}
-              <p><label>Comments</label></p>
-              {this.props.currentSpot.comments.map((comment)=> {
-                return (<div className="comment-div">
-                          <span className="img-span">
-                            <img src="img/skateboarder.png" alt="User Image" height="90" width="120" className="comment-image"/>
-                          </span>
-                          <span className="comment-span">
-                            <p className="bold-italic">{comment.username} :</p> 
-                            <p>{comment.comment}</p>
-                          </span>
-                        </div>);
-              })}
-              <form onSubmit={this.postComment.bind(this)}>
-                <div className="form-group">
-                    <label className="sr-only" >Detailed description</label>
-                    <textarea type="text" placeholder='Leave a Comment' value={this.state.newComment} 
-                    onChange={this.handleComment.bind(this)} className="form-control" ></textarea>
-                </div>
-                <button className="btn btn-success send-button" >Send</button>
-              </form>
-              {postedComment}
+              <div className="bubble-div">
+                <h3 className='display'>{this.props.currentSpot.name}</h3>
+                <p className="bold-italic">Address:</p>
+                <p>{this.props.currentSpot.address}</p>
+                <p className="bold-italic">Description:</p>
+                <p>{this.props.currentSpot.detailedDescription}</p>
+                <p><span className="bold-italic">Bust?</span> : {this.props.currentSpot.bust}</p>
+              </div>
+              <div className="bubble-div">
+                {checkinHeader}
+                {checkedInUser}
+                {checkin}
+              </div>
+              <div className="bubble-div">
+                <p><label>Comments</label></p>
+                {this.props.currentSpot.comments.map((comment)=> {
+                  return (<div className="comment-div">
+                            <span className="img-span">
+                              <img src="img/skateboarder.png" alt="User Image" height="90" width="120" className="comment-image"/>
+                            </span>
+                            <span className="comment-span">
+                              <p className="bold-italic">{comment.username} :</p> 
+                              <p>{comment.comment}</p>
+                            </span>
+                          </div>);
+                })}
+                <form onSubmit={this.postComment.bind(this)}>
+                  <div className="form-group">
+                      <label className="sr-only" >Detailed description</label>
+                      <textarea type="text" placeholder='Leave a Comment' value={this.state.newComment} 
+                      onChange={this.handleComment.bind(this)} className="form-control" ></textarea>
+                  </div>
+                  <button className="btn btn-success send-button" >Send</button>
+                </form>
+                {postedComment}
+              </div>
             </div>);
   }
 }
