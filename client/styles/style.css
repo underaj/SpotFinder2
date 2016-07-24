@@ -12,7 +12,7 @@ p {
 
 .tooltip-wrapper {
   position: relative;
-  background-color: grey;
+  background-color: lightgrey;
   width: 100px;
   left: 10px;
   height: auto;
