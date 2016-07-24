@@ -1,13 +1,13 @@
+body {
+  background-color: #e7e7e7;
+}
+
 a {
   cursor: pointer;
 }
 
 p {
   margin-bottom: 2px;
-}
-
-h3 {
-  margin: 5px 0 5px 0;
 }
 
 .tooltip-wrapper {
@@ -49,15 +49,28 @@ h3 {
 }
 
 .bubble-div {
-  border-radius: 15px;
-  border: 2px solid #DDDDDD;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 10px;
+  border-radius: 3px;
+  background-color: white;
+  margin: 10px 15px 5px 15px;
+  padding: 10px 15px;
+}
+
+.center-div {
+  margin: 5px auto;
+  width: 300px; 
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #e1e8ed;
+
+}
+
+h5 {
+  margin: 0;
 }
 
 .comment-div {
   border-top: 1px solid #e1e8ed;
+  margin-top: 3px;
 }
 
 .comment-image {
@@ -89,7 +102,7 @@ h3 {
 
 h3 {
   padding: 15px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .sidePanel {
