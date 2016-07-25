@@ -1,5 +1,5 @@
 import React from 'react';
-import { userSpotStyle } from './skateSpotStyle.js';
+import { userSpotStyle, outerDivStyle } from './skateSpotStyle.js';
 
 export default class UserSpot extends React.Component {
 
@@ -12,8 +12,10 @@ export default class UserSpot extends React.Component {
     var style = userSpotStyle;
 
     return (
-      <div style={style}>
-        {this.props.user.username}
+      <div style={outerDivStyle}>
+      {this.props.user.username}
+        <div style={style}>
+        </div>
       </div>
     );  
   }

@@ -73,7 +73,7 @@ export default class App extends React.Component {
     if (spot) {
       this.setState({
         currentSpot: spot,
-        center: {lat: spot.lat, lng: spot.lng + 0.04},
+        center: {lat: spot.lat, lng: spot.lng},
         zoom: 13,
         infoPanel: true,
         signInPanel: false
