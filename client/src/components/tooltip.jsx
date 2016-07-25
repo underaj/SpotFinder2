@@ -7,12 +7,10 @@ export default class Tooltip extends React.Component {
   }
 
 	render () {
-
-
 		return (
 			<div className='tooltip-wrapper' >
         {this.props.skateSpotData.shortDescription}
-        <div className='tooltip bottom'  role='tooltip'>
+        <div className='tooltip bottom' role='tooltip'>
         </div>
 			</div>
 		);

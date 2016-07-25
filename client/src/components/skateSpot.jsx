@@ -9,7 +9,7 @@ export default class SkateSpot extends React.Component {
   }
 
   spotOnClick() {
-    this.props.changeCurrentSpot(this.props.skateSpotData, true);
+    this.props.clickNav(4, this.props.skateSpotData);
   }
   
   render() {
@@ -23,7 +23,6 @@ export default class SkateSpot extends React.Component {
         </div>
         {toolTip}
       </div>
-      
     );  
   }
 }

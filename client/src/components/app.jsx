@@ -1,7 +1,6 @@
 import React from 'react';
 import OurMap from './map.jsx';
-import InfoPanel from './infoPanel.jsx';
-import {SignInPanel} from './signInPanel.jsx';
+import {SidePanel} from './sidePanel.jsx';
 import {Nav} from './nav.jsx';
 
 const dummyData = [
@@ -27,7 +26,7 @@ export default class App extends React.Component {
       skateSpots: dummyData,
       currentSpot: undefined,
       infoPanel: false,
-      signInPanel: false,
+      sidePanel: false,
       //mode to keep track of what panel to render
       //1 = signUP, 2 = signIn, 3 = add a spot
       mode: 0,
@@ -71,26 +70,6 @@ export default class App extends React.Component {
     });
   }
 
-  changeCurrentSpot(spot) {
-    if (spot) {
-      this.setState({
-        currentSpot: spot,
-        center: {lat: spot.lat, lng: spot.lng},
-        zoom: 13,
-        infoPanel: true,
-        signInPanel: false
-      });
-    } else {
-      this.setState({
-        currentSpot: undefined,
-        center: {lat: 37.75, lng: -122.44},
-        zoom: 13,
-        infoPanel: false,
-        signInPanel: false
-      });
-    }
-  }
-
   signin(userObj) {
     this.props.apiPost('/api/users/signin', userObj)
       .then((data) => {
@@ -111,8 +90,8 @@ export default class App extends React.Component {
           });
         } else {
           this.setState({
-              signInPanel: false
-            });
+            sidePanel: false
+          });
           this.getUserDetail();
         }
       });
@@ -149,14 +128,35 @@ export default class App extends React.Component {
     });
   }
 
-  //renders the proper component to the signInPanel
-  clickNav(modeNum){
-    this.setState({
-      mode: modeNum,
-      currentSpot: undefined,
-      infoPanel: false,
-      signInPanel: true
-    });
+  clickNav(modeNum, spot) {
+    console.log(modeNum);
+    //renders the proper component to the sidePanel
+    if (spot && modeNum === 4) {
+      this.setState({
+        mode: modeNum,
+        currentSpot: spot,
+        center: {lat: spot.lat, lng: spot.lng + 0.04},
+        zoom: 13,
+        infoPanel: true,
+        sidePanel: false
+      });
+    } else if (modeNum === 0) {
+      this.setState({
+        mode: modeNum,
+        currentSpot: undefined,
+        center: {lat: 37.75, lng: -122.44},
+        zoom: 13,
+        infoPanel: false,
+        sidePanel: false
+      });
+    } else {
+      this.setState({
+        mode: modeNum,
+        currentSpot: undefined,
+        infoPanel: false,
+        sidePanel: true
+      });
+    }
   }
 
   render() {
@@ -168,22 +168,17 @@ export default class App extends React.Component {
     //render the map in all cases
     var googleMap = <div className='map-wrapper' style={mapStyle}>
                       <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                      currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
+                      currentSpot={this.state.currentSpot} clickNav={this.clickNav.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                     </div>
     //depending on the state property, render one of the panels
-    if (this.state.signInPanel || this.state.infoPanel) {
+    if (this.state.sidePanel || this.state.infoPanel) {
       ourMap = <div className='col-xs-8 wrapper'>
                 {googleMap}
                </div>;
-      if (this.state.infoPanel) {
-        sidePanel = <div className='col-xs-4 side-wrapper'>
-                      <InfoPanel currentSpot={this.state.currentSpot} user={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)}  postComment={this.postComment.bind(this)}/>  
-                    </div>;
-      } else if (this.state.signInPanel) {
-        sidePanel = <div className='col-xs-4 side-wrapper'>
-                      <SignInPanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} user={this.state.user.username} skateSpots={this.state.skateSpots} getSkateSpots={this.getSkateSpots.bind(this)}/>
-                    </div>
-      }
+
+      sidePanel = <div className='col-xs-4 side-wrapper'>
+                    <SidePanel signin={this.signin.bind(this)} signup={this.signup.bind(this)} mode={this.state.mode} userLocation={this.state.userLocation} user={this.state.user.username} skateSpots={this.state.skateSpots} getSkateSpots={this.getSkateSpots.bind(this)} currentSpot={this.state.currentSpot} userObj={this.state.user} userLocation={this.state.userLocation} checkIn={this.checkIn.bind(this)}  postComment={this.postComment.bind(this)}/>
+                  </div>
     } else {
         ourMap = <div className='col-xs-12 wrapper'>
                   {googleMap}

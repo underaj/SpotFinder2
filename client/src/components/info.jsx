@@ -3,12 +3,12 @@ import SignIn from './signin.jsx';
 import SignUp from './signup.jsx';
 import { haversineDistance } from '../helper.js';
 
-export default class InfoPanel extends React.Component {
+export default class Info extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       newComment : '',
-      username: this.props.user.username,
+      username: this.props.userObj.username,
       locationId: this.props.currentSpot._id,
       userWithinDistance: undefined
     };
@@ -57,7 +57,7 @@ export default class InfoPanel extends React.Component {
     if (this.props.currentSpot.checkin.length > 0) {
       checkinHeader = <p className="bold-italic">Skaters currently at this spot!</p>;
       checkedInUser = this.props.currentSpot.checkin.map((user) => {
-        if (user._id === this.props.user._id) {
+        if (user._id === this.props.userObj._id) {
           checkedIn = true;
         }
 
@@ -67,7 +67,7 @@ export default class InfoPanel extends React.Component {
       checkinHeader = <p className="bold-italic">Wanna check in at the spot?</p>;
     }
 
-    if (this.props.user._id && checkedIn === false) {
+    if (this.props.userObj._id && checkedIn === false) {
       if (this.state.userWithinDistance === false) {
         checkin = <p>You are too far away.</p>;
       } else {
@@ -75,7 +75,7 @@ export default class InfoPanel extends React.Component {
       }
     }
 
-    if (!this.props.user._id && this.state.newComment.length > 0) {
+    if (!this.props.userObj._id && this.state.newComment.length > 0) {
       postedComment = <p>User has to be signed in to leave comments</p>;
     }
 
