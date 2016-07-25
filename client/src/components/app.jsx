@@ -168,7 +168,7 @@ export default class App extends React.Component {
     //render the map in all cases
     var googleMap = <div className='map-wrapper' style={mapStyle}>
                       <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
-                      currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
+                      currentSpot={this.state.currentSpot} clickNav={this.clickNav.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                     </div>
     //depending on the state property, render one of the panels
     if (this.state.sidePanel || this.state.infoPanel) {
