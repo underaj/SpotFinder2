@@ -7,7 +7,6 @@ import {Nav} from './nav.jsx';
 const dummyData = [
   {
     name: '',
-    icon: '',
     lat: 0,
     lng: 0,
     address: '',
@@ -30,6 +29,7 @@ export default class App extends React.Component {
       infoPanel: false,
       signInPanel: false,
       //mode to keep track of what panel to render
+      //1 = signUP, 2 = signIn, 3 = add a spot
       mode: 0,
       center: {lat: 37.75, lng: -122.44},
       zoom: 13

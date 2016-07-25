@@ -4,7 +4,6 @@ module.exports = function() {
   var dummyData = [
     {
       name: 'DOOP DOOP',
-      icon: 'hi AJ',
       lat:37.77397,
       lng: -122.43129,
       address: '1st street',
@@ -15,7 +14,6 @@ module.exports = function() {
     },
     { 
       name: 'WOOP WOOP',
-      icon: 'hi Conrad',
       lat:37.75397,
       lng: -122.43129,
       address: '2nd street',
@@ -26,7 +24,6 @@ module.exports = function() {
     },
     {
       name: 'CHOOP CHOOP',
-      icon: 'hi Nat',
       lat: 37.71397,
       lng: -122.45129,
       address: '3rd street',
