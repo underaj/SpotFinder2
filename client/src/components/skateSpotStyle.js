@@ -52,7 +52,6 @@ export const userSpotStyle = {
   height: '100%',
   left: -e_size / 2,
   top: -e_size / 2,
-
   borderRadius: e_size,
   content: 'url(http://i.imgur.com/Xs70rpU.png)',
   textAlign: 'center',

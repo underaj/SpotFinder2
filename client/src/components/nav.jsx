@@ -4,7 +4,7 @@ export const Nav = (props) => {
 
   if (props.user !== "anonymous" && props.user !== null){
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container">
           <ul className="nav navbar-nav">
             <li onClick={() => { props.clickNav(3)}}>
@@ -22,7 +22,7 @@ export const Nav = (props) => {
     );
   } else {
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container">
           <ul className="nav navbar-nav">
             <li onClick={() => { props.clickNav(2)}}>
