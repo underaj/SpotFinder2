@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Nav = (props) => {
-
+//render differnets navbar versions for signed in users and guests
   if (props.user !== "anonymous" && props.user !== null){
     return (
       <nav className="navbar navbar-default navbar-fixed-top">

@@ -43,10 +43,12 @@ export default class App extends React.Component {
   }
 
   getSkateSpots() {
+    //queries the db for all the skatespots, puts them on the map
     this.props.apiGet('/api/skateSpots', (skateSpots) => {
       if (this.state.currentSpot) {
         skateSpots.forEach( (skateSpot) => {
           if (skateSpot._id === this.state.currentSpot._id) {
+            //update the state from the server
             this.setState({
               currentSpot: skateSpot
             });
@@ -99,7 +101,9 @@ export default class App extends React.Component {
   signup(userObj) {
     this.props.apiPost('/api/users/signup', userObj)
       .then((data) => {
+        //checks db to prevent duplicate usernames
         if (data === userObj.username) {
+          //by setting the username to null, renders duplicate username user notification in signup component
           this.setState({
             user: {username: null}
           }).then(() => {
@@ -122,6 +126,7 @@ export default class App extends React.Component {
     });
   }
 
+  //set the user property on the state for rendering greeting, check-ins and comments
   getUserDetail() {
     this.props.apiGet('/api/users/userDetail', (userDetail) => {
       this.setState({
@@ -144,6 +149,7 @@ export default class App extends React.Component {
     });
   }
 
+  //renders the proper component to the signInPanel
   clickNav(modeNum){
     this.setState({
       mode: modeNum,
@@ -159,11 +165,12 @@ export default class App extends React.Component {
     var ourMap;
     var mapStyle = {height: screen.height - (0.15*screen.height)};
 
+    //render the map in all cases
     var googleMap = <div className='map-wrapper' style={mapStyle}>
                       <OurMap center={this.state.center} zoom={this.state.zoom} skateSpotsData={this.state.skateSpots}
                       currentSpot={this.state.currentSpot} changeCurrentSpot={this.changeCurrentSpot.bind(this)} user={this.state.user} userLocation={this.state.userLocation} />
                     </div>
-
+    //depending on the state property, render one of the panels
     if (this.state.signInPanel || this.state.infoPanel) {
       ourMap = <div className='col-xs-8 wrapper'>
                 {googleMap}
