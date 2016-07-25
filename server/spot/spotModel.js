@@ -7,7 +7,6 @@ var user = mongoose.Schema({
 
 var skateSpotSchema = mongoose.Schema({
 	name: String,
-  icon: String,
 	lat: Number,
 	lng: Number,
 	address: String,

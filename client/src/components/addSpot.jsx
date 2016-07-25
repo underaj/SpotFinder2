@@ -12,6 +12,7 @@ export default class NewSpot extends React.Component {
       shortDescription: '',
       detailedDescription: '',
       bust: '',
+      //visibility is used for user notification in case of duplicate location posting
       visibility: 'hidden'
     };
   }
@@ -57,19 +58,19 @@ export default class NewSpot extends React.Component {
 
   handleAddSpot(e){
     e.preventDefault();
-    e.stopPropagation();
     var conflict = false;
     var user = this.state;
+    //adds a spot using user's location if there's no spot in 500m radius yet(prevents duplicates)
     this.props.skateSpots.forEach(function(spot) {
       if (haversineDistance(spot, user) < 0.5) {
         conflict = true;
       }
     });
+    // show user notification if the user's too close to an existing spot
     if (conflict === true) {
       this.setState({
         visibility: 'visible'
       });
-      // TODO show some hidden element and let the client know they are too close to a current spot
     } else {
         apiPost('/api/skatespots', this.state)
           .done((data) => {

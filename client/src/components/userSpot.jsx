@@ -13,7 +13,7 @@ export default class UserSpot extends React.Component {
 
     return (
       <div style={outerDivStyle}>
-      {this.props.user.username}
+        {this.props.user.username}
         <div style={style}>
         </div>
       </div>

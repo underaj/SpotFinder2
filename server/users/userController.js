@@ -3,6 +3,7 @@ var passport = require('passport');
 
 module.exports = {
   signUp: function(req, res) {
+    //checks if the username is taken
     User.findOne({username: req.body.username}, function(err, result) {
       if (err) {
         res.sendStatus(404);
@@ -14,13 +15,13 @@ module.exports = {
       }
       else {
         console.log('req body ', req.body);
+        //else, create a new user
         var newUser = new User(req.body);
         newUser.save(function(err, user) {
           if (err) {
             res.sendStatus(404);
             return console.error(err);
           }
-          // console.log('saved to db ', user);
           req.login(user, function(err) {
             if (err) {
               console.error('login error ', err);

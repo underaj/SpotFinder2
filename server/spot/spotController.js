@@ -34,18 +34,6 @@ module.exports = {
 		});
 	},
 
-	// getComments: function(req, res) {
-	// 	var query = req.query._id
-	// 	SkateSpot.findOne({'_id': query}, function(err, skatespot) {
-	// 		if (err) {
-	// 		 console.error(err);
-	// 		 res.send(404);
-	// 		} else {
-	// 			res.json(skatespot.comments);
-	// 		}
-	// 	});
-	// },
-
   addComment: function(req, res) {
   	SkateSpot.findOne({'_id': req.body.locationId}, function(err, skatespot) {
   		if (err) {

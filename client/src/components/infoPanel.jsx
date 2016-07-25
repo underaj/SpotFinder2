@@ -15,6 +15,7 @@ export default class InfoPanel extends React.Component {
   } 
 
   checkin() {
+    //use haversine helper to compute the distance between user and spot
     var distance = haversineDistance({lat: this.props.currentSpot.lat, lng: this.props.currentSpot.lng}, this.props.userLocation);
     if (distance < 0.5) {
       this.props.checkIn({locationId: this.props.currentSpot._id});    
