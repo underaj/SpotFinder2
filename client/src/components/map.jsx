@@ -10,7 +10,7 @@ export default class OurMap extends React.Component {
   }
 
   spotOnBlur() {
-    this.props.changeCurrentSpot(undefined, false);
+    this.props.clickNav(0);
   }
 
   createMapOptions(maps){
@@ -22,11 +22,11 @@ export default class OurMap extends React.Component {
   render() {
     //google map component from google-map-react
     return (
-      <GoogleMap options={this.createMapOptions} center={this.props.center} zoom={this.props.zoom} onClick={ () => { this.spotOnBlur() } }>
+      <GoogleMap bootstrapURLKeys={{key: 'AIzaSyDZjkD659gGlpyUKXU14_Tomji58BSfI0A',language: 'en'}} options={this.createMapOptions} center={this.props.center} zoom={this.props.zoom} onClick={ () => { this.spotOnBlur() } }>
         <UserSpot user={this.props.user} lat={this.props.userLocation.lat} lng={this.props.userLocation.lng} />
         {this.props.skateSpotsData.map( (skateSpotData) => {
           return ( <SkateSpot lat={skateSpotData.lat} lng={skateSpotData.lng} 
-                   skateSpotData={skateSpotData} changeCurrentSpot={this.props.changeCurrentSpot} /> );
+                   skateSpotData={skateSpotData} clickNav={this.props.clickNav} /> );
         })}
       </GoogleMap>
     );

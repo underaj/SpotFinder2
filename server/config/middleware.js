@@ -13,6 +13,6 @@ module.exports = function(app, express) {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.static(__dirname + '/../../client'));
-  app.use(express.static(__dirname + '/../../node_modules'))
+  app.use(express.static(__dirname + '/../../node_modules'));
   app.use(express.static(__dirname + '/../../compiled'));
 };
